@@ -1,0 +1,192 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Platform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Pista.tscn" type="PackedScene" id=5]
+[ext_resource path="res://HUD.gd" type="Script" id=6]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 10, 0.2, 10 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 0, 0.129412, 0.00392157, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 11 )
+size = Vector3( 20, 0.4, 20 )
+
+[sub_resource type="BoxShape" id=8]
+
+[sub_resource type="CubeMesh" id=9]
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.560784, 0.94902, 1, 1 )
+
+[sub_resource type="GDScript" id=12]
+script/source = "extends StaticBody
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass 
+
+
+func _process(delta):
+	pass
+"
+
+[node name="Spatial" type="Spatial"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+
+[node name="ViewportContainer2" type="ViewportContainer" parent="HBoxContainer"]
+margin_right = 480.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 480, 540 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="HBoxContainer/ViewportContainer2"]
+size = Vector2( 480, 540 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Player" parent="HBoxContainer/ViewportContainer2/Viewport" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0 )
+script = ExtResource( 1 )
+
+[node name="HUD" type="Control" parent="HBoxContainer/ViewportContainer2/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 480.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 480, 540 )
+mouse_filter = 2
+script = ExtResource( 6 )
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/ViewportContainer2/Viewport/HUD"]
+anchor_top = 0.9
+anchor_right = 0.6
+anchor_bottom = 0.91
+margin_right = -230.0
+margin_bottom = 13.2
+rect_min_size = Vector2( 350, 19 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="HBoxContainer"]
+margin_left = 480.0
+margin_right = 960.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="HBoxContainer/ViewportContainer"]
+size = Vector2( 480, 540 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Player" parent="HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0 )
+script = ExtResource( 1 )
+playerId = 2
+
+[node name="HUD" type="Control" parent="HBoxContainer/ViewportContainer/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+script = ExtResource( 6 )
+player_group = "p2_"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/ViewportContainer/Viewport/HUD"]
+anchor_top = 0.9
+anchor_right = 0.6
+anchor_bottom = 0.91
+margin_right = 4.0
+margin_bottom = 14.0
+
+[node name="BakedLightmap" type="BakedLightmap" parent="."]
+quality = 0
+use_hdr = false
+environment_mode = 3
+environment_custom_color = Color( 0.145098, 0.643137, 0.815686, 1 )
+environment_custom_energy = 1.0
+capture_quality = 0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="BakedLightmap"]
+transform = Transform( 1, 0, 0, 0, 0.465939, 0.884817, 0, -0.884817, 0.465939, 0, 8.92853, 3.75228 )
+light_color = Color( 1, 0.945098, 0.694118, 1 )
+shadow_enabled = true
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+physics_material_override = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+use_in_baked_light = true
+mesh = SubResource( 4 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+shape = SubResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+use_in_baked_light = true
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
+
+[node name="Platforms" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.62939e-06, -45 )
+
+[node name="Platform1" parent="Platforms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -8 )
+
+[node name="Platform2" parent="Platforms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -8 )
+
+[node name="Platform3" parent="Platforms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13 )
+
+[node name="Platform4" parent="Platforms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -18 )
+
+[node name="Platform5" parent="Platforms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -18 )
+
+[node name="Platform6" parent="Platforms" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23 )
+
+[node name="Walls" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.62939e-06, -45 )
+
+[node name="Wall1" parent="Walls" instance=ExtResource( 4 )]
+transform = Transform( 0.507343, 0, 0.861745, 0, 1, 0, -0.861745, 0, 0.507343, 0.379882, 4.98622, 32.0804 )
+script = SubResource( 12 )
+
+[node name="Wall2" parent="Walls" instance=ExtResource( 4 )]
+transform = Transform( 0.507343, 0, 0.861745, 0, 1, 0, -0.861745, 0, 0.507343, 11.7914, 0, -44.9989 )
+
+[node name="Pista 1" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 7.62939e-06, -26 )
