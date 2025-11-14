@@ -88,12 +88,13 @@ func _physics_process(delta: float):
 		if is_on_floor():
 			if input_dir.length() != 0:
 				state = RUNNING
+				set_stamina(stamina - 25.0 * delta)
 			else:
 				state = IDLE
 		velocity.x = input_dir.x * running_speed
 		velocity.z = input_dir.z * running_speed
 		velocity.y -= gravity * delta
-		set_stamina(stamina - 25.0 * delta)
+		
 		st_timer = 0.0
 	else:
 		if is_on_floor():
