@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://banana_peel_model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Banana_peel.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1, 0.0587441 )
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="KinematicBody" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.0476065, 0, 0, 0, 0.00944788, 0, 0, 0, 0.819592, 0, 0.0546212, 0 )
+shape = SubResource( 1 )
+
+[node name="banana_peel" parent="." instance=ExtResource( 1 )]
+
+[node name="SlipArea" type="Area" parent="."]
+transform = Transform( 1.06329, 0, 0, 0, 0.253246, 0, 0, 0, 0.744125, 0, 0.0441626, 0.0017831 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SlipArea"]
+transform = Transform( 0.125334, 0, 0, 0, 0.117236, 0, 0, 0, 0.143344, 0, -0.0405659, 0 )
+shape = SubResource( 2 )

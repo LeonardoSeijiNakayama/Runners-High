@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://fire.glb" type="PackedScene" id=1]
+
+[node name="fire" instance=ExtResource( 1 )]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0.533879, -0.0345703 )
+
+[node name="Box001" parent="Sketchfab_model/7b560407805b4012aa8b55bd4c695f9afbx/Object_2/RootNode" index="0"]
+transform = Transform( 1, 0, 0, 0, 0.942412, -0.334455, 0, 0.334455, 0.942412, -1.34976, -24.3746, 8.82705 )
+
+[node name="Box004" parent="Sketchfab_model/7b560407805b4012aa8b55bd4c695f9afbx/Object_2/RootNode" index="2"]
+transform = Transform( 0.85018, -0.147962, -0.505274, 0.165866, 0.986101, -0.00967656, 0.499682, -0.0755808, 0.862905, -5.21257, -21.7532, -9.50861e-07 )
+
+[node name="Box005" parent="Sketchfab_model/7b560407805b4012aa8b55bd4c695f9afbx/Object_2/RootNode" index="3"]
+transform = Transform( -0.904135, 0.0675077, -0.42188, 0.0889426, 0.995544, -0.0313105, 0.417886, -0.065832, -0.906111, 1.35956, -21.5179, -6.05599 )
+
+[node name="Box008" parent="Sketchfab_model/7b560407805b4012aa8b55bd4c695f9afbx/Object_2/RootNode" index="6"]
+transform = Transform( 1, 0, 0, 0, 0.995556, 0.0941736, 0, -0.0941736, 0.995556, 0.932224, -16.1061, -1.55475 )
