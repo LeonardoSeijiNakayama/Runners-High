@@ -1,15 +1,15 @@
 extends KinematicBody
 
-var gravity = 12
 var velocity = Vector3.ZERO
 var speed = 13
 var ascending_speed = 8
-var target_group = null
+var target_group
 var ascending = true
 var ascending_timer = 0
 var global_delta
 var rotation_speed = 1.0
 const ASCENDING_TIME = 3
+var degree = 0.0
 export (int, 1, 2) var target := 1
 onready var collision = $CollisionShape
 onready var area = $Area
@@ -36,15 +36,14 @@ func _process(delta):
 	global_delta = delta
 	match target_group:
 		"p1_":
-			follow_target(target_group)
+			follow_target()
 		"p2_":
-			follow_target(target_group)
+			follow_target()
 	fire_animation.play("Take 001", 3.0, true)
-	spin(delta)
 
 
 
-func follow_target(target_group) -> void:
+func follow_target() -> void:
 	var pArray = get_tree().get_nodes_in_group(target_group)
 	if pArray.empty():
 		return
@@ -73,19 +72,10 @@ func follow_target(target_group) -> void:
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
+		var movement = body.get_child(2)
 		if body.is_in_group(target_group):
-			body.slip()
-			var explosion = explosion_scene.instance()
-			explosion.global_position = global_position
-			get_parent().add_child(explosion)
-			queue_free()
-	else:
-		queue_free()
-		var explosion = explosion_scene.instance()
-		explosion.global_position = global_position
-		get_parent().add_child(explosion)
-
-
-
-func spin(delta:float)->void:
-	rotation_degrees.z += delta*360.0
+			movement.slip()
+	queue_free()
+	var explosion = explosion_scene.instance()
+	get_parent().add_child(explosion)
+	explosion.global_position = global_position

@@ -17,6 +17,7 @@ transform = Transform( 0.16768, 0, 0, 0, -1.73055e-08, -0.135078, 0, 0.395905, -
 shape = SubResource( 1 )
 
 [node name="missile" parent="." instance=ExtResource( 1 )]
+transform = Transform( 15, 0, 0, 0, -6.55671e-07, 15, 0, -15, -6.55671e-07, 0, 0, 0 )
 
 [node name="Area" type="Area" parent="."]
 

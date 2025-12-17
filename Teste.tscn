@@ -1,12 +1,16 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Bar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Platform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Pista.tscn" type="PackedScene" id=5]
 [ext_resource path="res://HUD.gd" type="Script" id=6]
 [ext_resource path="res://Box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://PillarObstacle1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://PillarObstacle2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://PillarObstacle3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Water.tscn" type="PackedScene" id=11]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -19,13 +23,6 @@ albedo_color = Color( 0, 0.129412, 0.00392157, 1 )
 [sub_resource type="CubeMesh" id=4]
 material = SubResource( 11 )
 size = Vector3( 20, 0.4, 20 )
-
-[sub_resource type="BoxShape" id=8]
-
-[sub_resource type="CubeMesh" id=9]
-
-[sub_resource type="SpatialMaterial" id=10]
-albedo_color = Color( 0.560784, 0.94902, 1, 1 )
 
 [sub_resource type="GDScript" id=12]
 script/source = "extends StaticBody
@@ -42,7 +39,7 @@ func _ready():
 	pass 
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 "
 
@@ -67,8 +64,7 @@ handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="Player" parent="HBoxContainer/ViewportContainer2/Viewport" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0 )
-script = ExtResource( 1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46362, 2.94947, -24.6905 )
 
 [node name="HUD" type="Control" parent="HBoxContainer/ViewportContainer2/Viewport"]
 anchor_right = 1.0
@@ -102,7 +98,6 @@ render_target_update_mode = 3
 
 [node name="Player" parent="HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0 )
-script = ExtResource( 1 )
 playerId = 2
 
 [node name="HUD" type="Control" parent="HBoxContainer/ViewportContainer/Viewport"]
@@ -130,7 +125,7 @@ environment_custom_energy = 1.0
 capture_quality = 0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="BakedLightmap"]
-transform = Transform( 1, 0, 0, 0, 0.465939, 0.884817, 0, -0.884817, 0.465939, 0, 8.92853, 3.75228 )
+transform = Transform( 1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 11.703, -13.0274 )
 light_color = Color( 1, 0.945098, 0.694118, 1 )
 shadow_enabled = true
 
@@ -145,18 +140,22 @@ shape = SubResource( 2 )
 use_in_baked_light = true
 mesh = SubResource( 4 )
 
-[node name="RigidBody" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+[node name="Pista 1" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 79.6399, 0, -1, 0, -4.37114e-08, 0, -15.52, -26 )
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-shape = SubResource( 8 )
+[node name="Boxes1" type="Spatial" parent="."]
 
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-use_in_baked_light = true
-mesh = SubResource( 9 )
-material/0 = SubResource( 10 )
+[node name="Area2" parent="Boxes1" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -43 )
+
+[node name="Area3" parent="Boxes1" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -43 )
+
+[node name="Area4" parent="Boxes1" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -43 )
+
+[node name="Area5" parent="Boxes1" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -43 )
 
 [node name="Platforms" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.62939e-06, -45 )
@@ -179,33 +178,66 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -18 )
 [node name="Platform6" parent="Platforms" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23 )
 
-[node name="Walls" type="Spatial" parent="."]
+[node name="WRWalls" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.62939e-06, -45 )
 
-[node name="Wall1" parent="Walls" instance=ExtResource( 4 )]
-transform = Transform( 0.507343, 0, 0.861745, 0, 1, 0, -0.861745, 0, 0.507343, 0.379882, 4.98622, 32.0804 )
+[node name="Wall1" parent="WRWalls" instance=ExtResource( 4 )]
+transform = Transform( 0.507343, 0, 0.861745, 0, 1, 0, -0.861745, 0, 0.507343, -2.678, 2, -34.941 )
 script = SubResource( 12 )
 
-[node name="Wall2" parent="Walls" instance=ExtResource( 4 )]
-transform = Transform( 0.507343, 0, 0.861745, 0, 1, 0, -0.861745, 0, 0.507343, 11.7914, 0, -44.9989 )
+[node name="Wall2" parent="WRWalls" instance=ExtResource( 4 )]
+transform = Transform( 0.507343, 0, 0.861745, 0, 1, 0, -0.861745, 0, 0.507343, 11.791, 2, -44.999 )
 
-[node name="Pista 1" parent="." instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 7.62939e-06, -26 )
+[node name="GPBar" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.824, 0, -0.567, 0, 1, 0, 0.567, 0, 0.824, 19, 6, -111 )
 
-[node name="Area" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84304, 2.07787, -9.04172 )
+[node name="Boxes2" type="Spatial" parent="."]
 
-[node name="Area2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12386, 2, -11.0996 )
+[node name="Box" parent="Boxes2" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9778, -3.42952, -125.392 )
 
-[node name="Area3" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12386, 2, -13.9666 )
+[node name="Pista 2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.570828, 0, 0.82107, 0, 65.9845, 0, -0.82107, 0, 0.570828, 43, -18.9551, -149.294 )
 
-[node name="Area4" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12386, 2, -16.8706 )
+[node name="Boxes3" type="Spatial" parent="."]
 
-[node name="Area5" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12386, 2, -19.7045 )
+[node name="Box2" parent="Boxes3" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.8, 13, -206.5 )
 
-[node name="Area6" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12386, 2, -23.7526 )
+[node name="Box" parent="Boxes3" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 9.5, -166.5 )
+
+[node name="Pillars" type="Spatial" parent="."]
+transform = Transform( 1.57743, 21.474, -0.059721, 0, 22.405, 0.171257, 1.11767, -30.3076, 0.0842878, 60.1498, 6.07103, -183.924 )
+
+[node name="PillarObstacle" parent="Pillars" instance=ExtResource( 8 )]
+transform = Transform( -0.332498, 0, -0.396241, -0.0151215, 0.011907, 0.0126889, 1.97829, 4.28143, -1.66004, 16.4864, -0.133974, -59.2584 )
+
+[node name="PillarObstacle2" parent="Pillars" instance=ExtResource( 9 )]
+transform = Transform( 0.314919, 0, -0.410351, -0.01566, 0.011907, -0.012018, 2.04874, 4.28143, 1.57228, 0.961641, 0.764738, -142.565 )
+
+[node name="PillarObstacle3" parent="Pillars" instance=ExtResource( 9 )]
+transform = Transform( 0.337389, 8.91223e-09, -0.392085, -0.0149629, 0.011907, -0.0128756, 1.95754, 4.28143, 1.68447, -14.1081, -0.12516, -127.633 )
+
+[node name="PillarObstacle4" parent="Pillars" instance=ExtResource( 10 )]
+transform = Transform( -0.120797, -3.66612e-09, -0.502961, -0.0191942, 0.011907, 0.00460986, 2.51111, 4.28142, -0.603096, -9.52655, 0.734765, -175.921 )
+
+[node name="GPBars" type="Spatial" parent="."]
+
+[node name="StaticBody2" parent="GPBars" instance=ExtResource( 1 )]
+transform = Transform( 0.488155, 0, -0.307506, 0, 1, 0, 0.157755, 0, 0.951546, 87.5195, 28.7765, -237.615 )
+
+[node name="StaticBody3" parent="GPBars" instance=ExtResource( 1 )]
+transform = Transform( 0.460858, 0, 0.109942, 0, 1, 0, -0.0509769, 0, 0.993938, 87.2248, 36.6484, -268.343 )
+
+[node name="StaticBody4" parent="GPBars" instance=ExtResource( 1 )]
+transform = Transform( 0.0894246, 0, -0.931666, 0, 1, 0, 0.229315, 0, 0.363316, 126.177, 33.1417, -282.22 )
+
+[node name="StaticBody5" parent="GPBars" instance=ExtResource( 1 )]
+transform = Transform( 0.400638, 0, -0.723594, 0, 1, 0, 0.420006, 0, 0.690226, 170.217, -2.29673, -320.269 )
+
+[node name="Water" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.6717, 0 )
+
+[node name="Pista 3" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.723233, 0, 0.690605, 0, 102.093, 0, -0.690605, 0, 0.723233, 196.11, -26.7791, -344.498 )

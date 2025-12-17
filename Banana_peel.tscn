@@ -18,7 +18,7 @@ shape = SubResource( 1 )
 [node name="banana_peel" parent="." instance=ExtResource( 1 )]
 
 [node name="SlipArea" type="Area" parent="."]
-transform = Transform( 1.06329, 0, 0, 0, 0.253246, 0, 0, 0, 0.744125, 0, 0.0441626, 0.0017831 )
+transform = Transform( 1.29718, 0, 0, 0, 0.750775, 0, 0, 0, 1.07601, 0, 0.129169, 0.0017831 )
 
 [node name="CollisionShape" type="CollisionShape" parent="SlipArea"]
 transform = Transform( 0.125334, 0, 0, 0, 0.117236, 0, 0, 0, 0.143344, 0, -0.0405659, 0 )

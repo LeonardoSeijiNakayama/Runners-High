@@ -9,7 +9,7 @@ size = Vector3( 14, 10, 0.4 )
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.254902, 0.313726, 0.505882, 1 )
 
-[node name="StaticBody" type="StaticBody"]
+[node name="StaticBody" type="StaticBody" groups=["WallRunnable"]]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )

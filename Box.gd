@@ -1,10 +1,10 @@
 extends Area
 
-
 const HOVER_CHANGE_TIME = 1.0
 var degree = 0.0
 var rotation_speed = 1.0
-var rotation_speed_slow = rotation_speed/10
+const rotation_speed_normal = 1.0
+const rotation_speed_slow = 0.1
 var hover_speed = 0.005
 var hover_change_timer = 0.0
 var hover_flag = true
@@ -13,6 +13,8 @@ var disappearing_timer := 0.0
 var disappearing = false
 var original_scale
 var catched = false
+var REESPAWN_TIME = 5.0
+var reespawn_timer = 0.0
 const DISAPPEAR_TIME := 0.5
 
 
@@ -30,13 +32,30 @@ func _process(delta):
 			disappearing_timer = DISAPPEAR_TIME
 		rotation_speed = rotation_speed_slow
 		disappear()
+	if catched:
+		if reespawn_timer == 0:
+			reespawn_timer = REESPAWN_TIME
+		reespawn()
+		
 	global_delta = delta
-	rotation(degree, delta)
+	rotation(delta)
 	hover(delta)
 
 
+func reespawn()->void:
+	if reespawn_timer <= 0:
+		reespawn_timer = 0.0
+		scale = original_scale
+		disappearing = false
+		catched = false
+		set_deferred("monitoring", true)
+		visible = true
+		rotation_speed = rotation_speed_normal
+	else:
+		reespawn_timer -= global_delta
 
-func rotation(degree:float, delta: float)->void:
+
+func rotation(delta: float)->void:
 	degree = rotation_speed * delta
 	if degree >= 360.0:
 		degree = 0.0
@@ -66,7 +85,8 @@ func disappear()->void:
 	rotation_speed = 50
 	if disappearing_timer <= 0:
 		disappearing_timer = 0
-		queue_free()
+		set_deferred("monitoring", false)
+		visible = false
 	else:
 		var t := disappearing_timer/DISAPPEAR_TIME
 		t = clamp(t, 0.0, 1.0)
@@ -78,9 +98,9 @@ func disappear()->void:
 func _on_area_entered(area):
 	if area.is_in_group("Player"):
 		var player = area.get_parent()
-		if player.current_hability == player.HABILITY_NONE:
-			var id = player.playerId
+		var playerAbilities = player.get_child(0)
+		if playerAbilities.current_hability == playerAbilities.HABILITY_NONE:
 			if not catched:
-				player.get_item()
+				playerAbilities.get_new_hability()
 				disappearing = true
 				catched = true

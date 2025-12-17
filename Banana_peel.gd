@@ -19,7 +19,8 @@ func _ready():
 func _on_area_entered(area):
 	if area.is_in_group("Player"):
 		var player = area.get_parent()
-		player.slip()
+		var movement = player.get_child(2)
+		movement.slip()
 		queue_free()
 
 func _physics_process(delta):

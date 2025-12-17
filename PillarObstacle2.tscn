@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Plank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DefaultMaterial.material" type="Material" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.5, 30, 2.5 )
+
+[sub_resource type="CubeMesh" id=2]
+material = ExtResource( 2 )
+size = Vector3( 5, 60, 5 )
+
+[node name="PillarObstacle2" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0680971, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 2 )
+
+[node name="StaticBody2" parent="." instance=ExtResource( 1 )]
+transform = Transform( -6.55671e-08, -22.6577, 0.105655, 0, 10.5655, 0.226577, -1.5, 9.90399e-07, -4.61831e-09, 25.123, 19.1942, 0 )

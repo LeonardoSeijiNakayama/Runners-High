@@ -17,3 +17,6 @@ shape = SubResource( 1 )
 [node name="Icosphere2" parent="." instance=ExtResource( 1 )]
 
 [node name="Icosphere3" parent="." instance=ExtResource( 1 )]
+
+[node name="OmniLight" type="OmniLight" parent="."]
+light_color = Color( 0.92549, 0.592157, 0.0705882, 1 )

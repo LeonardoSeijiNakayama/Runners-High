@@ -18,7 +18,8 @@ func _connect_to_player():
 	if list.size() == 0:
 		return
 	var player = list[0]
-	player.connect("stamina_changed", self, "_on_stamina_changed")
+	var movement = player.get_child(2)
+	movement.connect("stamina_changed", self, "_on_stamina_changed")
 	# Inicializa visual se o player já tiver valores
 	# (caso você mantenha getters no player)
 	# bar.max_value = player.stamina_max

@@ -12,7 +12,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if btnPlay.pressed:
 		get_tree().change_scene("res://Teste.tscn")
 	if btnExit.pressed:

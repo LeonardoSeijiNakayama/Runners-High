@@ -4,3 +4,12 @@
 
 [node name="fireball" instance=ExtResource( 1 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+
+[node name="Icosphere" parent="." index="0"]
+cast_shadow = 0
+
+[node name="Icosphere001" parent="." index="1"]
+cast_shadow = 0
+
+[node name="Icosphere002" parent="." index="2"]
+cast_shadow = 0
