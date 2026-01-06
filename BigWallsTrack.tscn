@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://BigWall.tscn" type="PackedScene" id=1]
+
+[node name="BigWallsTrack" type="Spatial"]
+
+[node name="BigWall" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.949688, 0, -0.313197, 0, 1, 0, 0.313197, 0, 0.949688, -2.32047, 0, -1.99725 )
+
+[node name="BigWall2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.983429, 0, -0.181292, 0, 1, 0, 0.181292, 0, 0.983429, 35, 0, 0 )
+
+[node name="BigWall3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 10 )
+
+[node name="BigWall4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.862911, -0.138201, -0.486091, 0.158141, 0.987416, 0, 0.479975, -0.0768709, 0.873908, -32.6543, -5.30267, -26.9581 )
+
+[node name="BigWall5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.862911, -0.138201, -0.486091, 0.158141, 0.987416, 0, 0.479975, -0.0768709, 0.873908, -56.8159, -9.73061, -40.3974 )

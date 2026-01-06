@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://low_poly_island_model.tscn" type="PackedScene" id=1]
+
+[node name="Island" type="Spatial"]
+
+[node name="low_poly_island" parent="." instance=ExtResource( 1 )]

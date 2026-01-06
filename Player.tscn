@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://PlayerCameraNode.gd" type="Script" id=1]
+[ext_resource path="res://PlayerLaps.gd" type="Script" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=3]
 [ext_resource path="res://PlayerAbilities.gd" type="Script" id=4]
 [ext_resource path="res://PlayerAnimation.gd" type="Script" id=5]
@@ -28,6 +29,9 @@ script = ExtResource( 6 )
 [node name="Camera" type="Node" parent="."]
 script = ExtResource( 7 )
 
+[node name="Laps" type="Node" parent="."]
+script = ExtResource( 2 )
+
 [node name="Man2" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.91503, 0.0750269 )
 
@@ -37,6 +41,7 @@ spring_length = 4.0
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="SpringArm"]
+far = 250.0
 
 [node name="InteractionArea" type="Area" parent="." groups=["Player"]]
 

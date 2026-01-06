@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Plank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DefaultMaterial.material" type="Material" id=2]
+[ext_resource path="res://Plank_Tile.png" type="Texture" id=3]
+[ext_resource path="res://Rock_Tile.png" type="Texture" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 3, 30, 3 )
@@ -10,12 +12,27 @@ extents = Vector3( 3, 30, 3 )
 material = ExtResource( 2 )
 size = Vector3( 6, 60, 6 )
 
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 2, 8, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="PlaneMesh" id=6]
+material = SubResource( 5 )
+size = Vector2( 6, 6 )
+
 [node name="PillarObstacle3" type="Spatial"]
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0941811, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
@@ -24,3 +41,10 @@ mesh = SubResource( 2 )
 
 [node name="StaticBody2" parent="." instance=ExtResource( 1 )]
 transform = Transform( -8.30441e-08, -17.7932, 0.0268326, -1.20239e-07, 5.83519, 0.193865, -1.7, 1.26552e-06, -1.71216e-08, 20.838, 24.0246, 0.019 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+mesh = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0757501, 30.0513, 0 )
+mesh = SubResource( 6 )

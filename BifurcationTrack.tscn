@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://SmallTrack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SquareTrack.tscn" type="PackedScene" id=3]
+
+[node name="BifurcationTrack" type="Spatial"]
+
+[node name="SmallTrack" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.429581, 0, -0.903028, 0, 1, 0, 0.903028, 0, 0.429581, 27.9823, 0.0676398, -21.8852 )
+
+[node name="SmallTrack3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.429581, 0, -0.903028, 0, 1, 0, 0.903028, 0, 0.429581, -28.0169, -4.93236, 15.7814 )
+
+[node name="SmallTrack2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.701643, 0, 0.712528, 0, 1, 0, -0.712528, 0, 0.701643, -19.385, 0.0676398, -28.6921 )
+
+[node name="SmallTrack4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.701643, 0, 0.712528, 0, 1, 0, -0.712528, 0, 0.701643, 18.1441, -4.93236, 26.4604 )
+
+[node name="StaticBody" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.969689, 0, 0.244343, 0, 1, 0, -0.244343, 0, 0.969689, 5.15559, 4.9195, -32.0852 )
+
+[node name="StaticBody2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.835424, 0, 0.549606, 0, 1, 0, -0.549606, 0, 0.835424, -1.08208, 3.46818, -20.0447 )
+
+[node name="StaticBody5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.998688, 0, -0.051203, 0, 1, 0, 0.051203, 0, 0.998688, -3.24779, 3.46818, -6.31587 )
+
+[node name="StaticBody6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.969467, 0, -0.245223, 0, 1, 0, 0.245223, 0, 0.969467, -0.775866, 2.69407, 7.73882 )
+
+[node name="StaticBody7" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.969467, 0, -0.245223, 0, 1, 0, 0.245223, 0, 0.969467, 2.65986, 2.69407, 21.0587 )
+
+[node name="StaticBody8" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.234955, 0, -0.972006, 0, 1, 0, 0.972006, 0, 0.234955, -6.06896, 2.69407, 32.0665 )
+
+[node name="StaticBody3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.98851, 0, 0.151157, 0, 1, 0, -0.151157, 0, 0.98851, 9.87117, 1.92158, -15.8433 )
+
+[node name="StaticBody4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.998957, 0, -0.0456594, 0, 1, 0, 0.0456594, 0, 0.998957, 7.542, 2.59348, -1.6487 )
+
+[node name="SquareTrack" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.919753, 0, -0.392498, 0, 1, 0, 0.392498, 0, 0.919753, -12.06, -9.07405, 52.6427 )

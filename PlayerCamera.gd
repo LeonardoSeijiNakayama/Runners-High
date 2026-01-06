@@ -4,7 +4,6 @@ class_name PlayerCamera
 export(bool) var smooth_camera_yaw := true
 export(float, 0.0, 20.0) var turn_speed := 8.0
 
-# --- Speed effect (FOV + zoom real no SpringArm) ---
 export(bool) var speed_effect_enabled := true
 export(bool) var ignore_vertical_speed := true
 
@@ -14,19 +13,18 @@ export(float, 1.0, 179.0) var base_fov := 70.0
 export(float, 1.0, 179.0) var max_fov := 100.0
 
 export(float, 0.0, 10.0) var extra_arm_length_max := 5.0
-export(float, 0.1, 999.0) var speed_for_max_effect := 10.0
+export(float, 0.1, 999.0) var speed_for_max_effect := 18.0
 
 export(float, 0.0, 50.0) var fov_lerp_speed := 2.0
 export(float, 0.0, 50.0) var arm_lerp_speed := 2.0
 
-export(float) var effect_deadzone_speed := 1.0  # abaixo disso = 0% efeito
+export(float) var effect_deadzone_speed := 1.0  
 
 export(float) var speed_point_a := 7.5
-export(float, 0.0, 1.0) var effect_at_a := 0.1
+export(float, 0.0, 1.0) var effect_at_a := 0.3
 
 export(float) var speed_point_b := 15.0
-export(float, 0.0, 1.0) var effect_at_b := 1.0
-
+export(float, 0.0, 1.0) var effect_at_b := 0.6
 
 onready var Player = get_parent()
 onready var _spring_arm: SpringArm = Player.get_node("SpringArm") as SpringArm
@@ -38,7 +36,6 @@ func _ready():
 		_base_arm_length = _spring_arm.spring_length
 
 	if _cam3d:
-		# garante que você está vendo essa câmera
 		_cam3d.current = true
 		base_fov = _cam3d.fov
 
@@ -48,11 +45,11 @@ func update(ix, iz):
 	var cam_fwd = -cam_basis.z
 	cam_fwd.y = 0
 	cam_fwd = cam_fwd.normalized()
-
+	
 	var cam_right = cam_basis.x
 	cam_right.y = 0
 	cam_right = cam_right.normalized()
-
+	
 	return (cam_right * ix + cam_fwd * iz)
 
 
@@ -60,7 +57,7 @@ func rotatePlayerWithCamera(slipped:bool, delta:float):
 	var cam_basis = _spring_arm.global_transform.basis
 	var cam_fwd = -cam_basis.z
 	var cam_yaw = atan2(cam_fwd.x, cam_fwd.z)
-
+	
 	if not slipped:
 		if smooth_camera_yaw:
 			Player.rotation.y = lerp_angle(Player.rotation.y, cam_yaw, clamp(turn_speed * delta, 0, 1))
@@ -68,7 +65,6 @@ func rotatePlayerWithCamera(slipped:bool, delta:float):
 			Player.rotation.y = cam_yaw
 
 
-# CHAMADO NO PlayerMovement (como você já faz)
 func apply_speed_fov(velocity: Vector3, delta: float) -> void:
 	if not speed_effect_enabled or _spring_arm == null or _cam3d == null:
 		return

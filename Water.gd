@@ -15,7 +15,7 @@ func _ready():
 
 func on_water_area_entered(body)->void:
 	if body.is_in_group("Player"):
-		print(body)
+		body.global_position = body.checkpointPosition
 	
 
 

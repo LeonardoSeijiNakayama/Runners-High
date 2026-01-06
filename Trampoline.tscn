@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://low_poly_trampoline_model.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Trampoline.gd" type="Script" id=2]
+
+[sub_resource type="CylinderShape" id=1]
+height = 0.7
+radius = 1.7
+
+[sub_resource type="CylinderShape" id=2]
+height = 0.7
+radius = 1.75
+
+[node name="Area" type="Area"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363318, 0 )
+shape = SubResource( 1 )
+
+[node name="low_poly_trampoline" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.674108, 0 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.315444, 0 )
+shape = SubResource( 2 )

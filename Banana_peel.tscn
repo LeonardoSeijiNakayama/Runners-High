@@ -7,19 +7,21 @@
 extents = Vector3( 1, 1, 0.0587441 )
 
 [sub_resource type="BoxShape" id=2]
+extents = Vector3( 2, 1, 1.36 )
 
 [node name="KinematicBody" type="KinematicBody"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.0476065, 0, 0, 0, 0.00944788, 0, 0, 0, 0.819592, 0, 0.0546212, 0 )
+transform = Transform( 0.0476065, 0, 0, 0, 0.00944788, 0, 0, 0, 0.819592, 0, 0.0110679, 0 )
 shape = SubResource( 1 )
 
 [node name="banana_peel" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.5, 0, 0, 0 )
 
 [node name="SlipArea" type="Area" parent="."]
 transform = Transform( 1.29718, 0, 0, 0, 0.750775, 0, 0, 0, 1.07601, 0, 0.129169, 0.0017831 )
 
 [node name="CollisionShape" type="CollisionShape" parent="SlipArea"]
-transform = Transform( 0.125334, 0, 0, 0, 0.117236, 0, 0, 0, 0.143344, 0, -0.0405659, 0 )
+transform = Transform( 0.125334, 0, 0, 0, 0.117236, 0, 0, 0, 0.143344, 0, -0.0405659, -0.00206736 )
 shape = SubResource( 2 )

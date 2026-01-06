@@ -7,16 +7,17 @@ const RUNNING = 2
 const JUMPING = 3
 const RUNNING_JUMP = 4
 const JOGGING_JUMP = 5
-const WALLRUNNING = 6
-const FALLING = 7
-const SLIPPED = 8
-const SWINGING = 9
+const WALLRUNNING_LEFT = 6
+const WALLRUNNING_RIGHT = 7
+const FALLING = 8
+const SLIPPED = 9
+const SWINGING = 10
 
 
 export(int, 1, 2) var playerId := 1
 
 const NORMAL_SPEED = 7.5
-const WR_SPEED = 9.5
+const WR_SPEED = 17.0
 const RUNNING_SPEED = 15
 const NORMAL_GRAVITY = 12
 const WR_GRAVITY := 2
@@ -26,6 +27,9 @@ export var gravity := NORMAL_GRAVITY
 export var jump_force := 6.0
 export var stamina_max = 100.0
 export var stamina := 100.0
+var velocity := Vector3.ZERO
+var _snap_vector := Vector3.DOWN
+var boost = false
 
 signal stamina_changed(current, maxv)
 
@@ -33,10 +37,14 @@ var prefix = ""
 export var slipped = false
 
 var global_delta
+var checkpointPosition
+var currentCheckpoint = 0
+var onFinalCheckpoint = false
+var currentLap = 0
 
 onready var abilities: PlayerAbilities = $Abilities
 onready var animation: PlayerAnimation = $Animation
-onready var movement: PlayerMovement = $Movement
+onready var movement = $Movement
 onready var camera: PlayerCamera = $Camera
 onready var _spring_arm: SpringArm = $SpringArm
 

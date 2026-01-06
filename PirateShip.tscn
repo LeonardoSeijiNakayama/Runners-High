@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://pirate_ship_lowpoly_model.tscn" type="PackedScene" id=1]
+
+[node name="PirateShip" type="Spatial"]
+
+[node name="pirate_ship_lowpoly" parent="." instance=ExtResource( 1 )]
+transform = Transform( 6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0 )

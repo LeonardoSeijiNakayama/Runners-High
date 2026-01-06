@@ -7,10 +7,12 @@
 
 [sub_resource type="BoxShape" id=5]
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0, 0.709804, 0.811765, 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 1, 0, 0, 1 )
+[sub_resource type="CubeMesh" id=7]
+material = SubResource( 6 )
+size = Vector3( 3, 3, 3 )
 
 [node name="GrapplingHook" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -26,9 +28,7 @@ transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
 shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
-mesh = SubResource( 2 )
-skeleton = NodePath("../..")
-material/0 = SubResource( 3 )
+mesh = SubResource( 7 )
 
 [node name="RopeMesh" parent="." instance=ExtResource( 2 )]
 visible = false

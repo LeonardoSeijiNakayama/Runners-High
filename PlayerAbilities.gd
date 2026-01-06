@@ -33,6 +33,8 @@ var rng := RandomNumberGenerator.new()
 onready var Player := get_parent()
 onready var PlayerMove = $"../Movement"
 
+signal ability_changed(name)
+
 func _ready() -> void:
 	rng.randomize()
 
@@ -46,6 +48,7 @@ func physics_update(delta: float) -> void:
 
 func handle_input() -> void:
 	if Input.is_action_just_pressed(Player.prefix + "hability"):
+		emit_signal("ability_changed", "-")
 		match current_hability:
 			HABILITY_NONE:
 				print("none")
@@ -102,11 +105,24 @@ func shoot_gp()->void:
 			
 			Gp_Flag = true
 			Gp_Timer = GP_TIME
+	else:
+		if Gp_Hook.run_distance >= 75.0:
+			release_gp()
 
 
 func get_new_hability() -> void:
 	current_hability = rng.randi_range(1, 4)
-	print(current_hability)
+	var name = ""
+	match current_hability:
+			MISSILE:
+				name = "Missile"
+			BANANA_PEEL:
+				name = "Banana Peel"
+			RUNNERS_HIGH:
+				name = "Runners High"
+			SHIELD:
+				name = "Shield"
+	emit_signal("ability_changed", name)
 
 
 func is_runners_high_active() -> bool:

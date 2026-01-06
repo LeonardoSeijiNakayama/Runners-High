@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://temple_ruins_model.tscn" type="PackedScene" id=1]
+
+[node name="TempleRuins" type="Spatial"]
+
+[node name="temple_ruins" parent="." instance=ExtResource( 1 )]

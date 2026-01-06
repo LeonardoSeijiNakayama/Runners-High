@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Bar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://BigWall.tscn" type="PackedScene" id=2]
+
+[node name="BarsAndWallsTrack" type="Spatial"]
+
+[node name="StaticBody" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.910316, 0, -0.413915, 0, 1, 0, 0.413915, 0, 0.910316, 52.889, -7.80703, -47.8857 )
+
+[node name="StaticBody2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.910316, 0, -0.413915, 0, 1, 0, 0.413915, 0, 0.910316, 40.889, -1.80703, -20.8857 )
+
+[node name="StaticBody3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.910316, 0, -0.413915, 0, 1, 0, 0.413915, 0, 0.910316, 30.889, 4.19297, 1.11426 )
+
+[node name="StaticBody4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.374607, 0, -0.927184, 0, 1, 0, 0.927184, 0, 0.374607, -14.8861, 7.80734, 44.5019 )
+
+[node name="StaticBody5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.35602, 0, -0.934478, 0, 1, 0, 0.934478, 0, 0.35602, -79.9277, 2.54328, 72.7497 )
+
+[node name="BigWall" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, 0.642788, 20.889, 5.99297, 32.7403 )
+
+[node name="BigWall2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.920505, 0, 0.390731, 0, 1, 0, -0.390731, 0, 0.920505, -52.8882, 2.06805, 47.8858 )
+
+[node name="BigWall3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -115.466, -1.05282, 88.1169 )

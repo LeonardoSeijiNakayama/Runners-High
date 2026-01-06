@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tubby_island_wip_model.tscn" type="PackedScene" id=1]
+
+[node name="Island2" type="Spatial"]
+
+[node name="tubby_island_wip" parent="." instance=ExtResource( 1 )]

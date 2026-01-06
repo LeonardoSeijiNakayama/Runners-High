@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://props/tubby_island_wip.glb" type="PackedScene" id=1]
+
+[node name="tubby_island_wip" instance=ExtResource( 1 )]

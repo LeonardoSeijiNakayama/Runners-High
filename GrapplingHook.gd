@@ -7,14 +7,18 @@ var player_id
 var hooked = false
 var speed = 50.0
 var distance = null
+var run_distance = null
 var velocity = Vector3.ZERO
-
+var player
 var anchor_pos = Vector3() 
 
 onready var rope = $RopeMesh
 
 
 func _ready():
+	var pArray = get_tree().get_nodes_in_group(player_id)
+	if not pArray.empty() and distance == null:
+		player = pArray[0]
 	collision.set_deferred("disabled", true)
 	area.connect("body_entered", self, "_on_body_entered")
 
@@ -29,11 +33,6 @@ func _physics_process(_delta):
 
 
 func _update_rope() -> void:
-	var pArray = get_tree().get_nodes_in_group(player_id)
-	if pArray.empty(): 
-		return
-	var player = pArray[0]
-	
 	var p0 = player.global_transform.origin
 	var p1
 	if hooked:
@@ -41,6 +40,7 @@ func _update_rope() -> void:
 	else:
 		p1 = global_transform.origin
 		
+	run_distance = global_transform.origin.distance_to(player.global_transform.origin)
 	rope.update_rope(p0, p1)
 	rope.visible = true
 
@@ -59,9 +59,7 @@ func get_hooked() -> void:
 	anchor_pos = global_transform.origin
 	area.set_deferred("monitoring", false)
 	
-	var pArray = get_tree().get_nodes_in_group(player_id)
-	if not pArray.empty() and distance == null:
-		var player = pArray[0]
+	if player:
 		distance = anchor_pos.distance_to(player.global_transform.origin)
 
 
