@@ -11,7 +11,6 @@ export (float, 0.0, 1.0) var wr_cooldown := 0.0
 
 var wr_flag := false
 
-var sliding = false
 
 const GET_UP_TIME = 3.0
 var get_up_timer = 0
@@ -40,6 +39,7 @@ onready var Player = get_parent()
 onready var abilities = $"../Abilities"
 onready var animation = $"../Animation"
 onready var camera = $"../Camera"
+
 
 func _ready():
 	pass
@@ -81,9 +81,11 @@ func check_idle(input_dir)->void:
 	and input_dir.length() <= 0.1 \
 	and horiz < 0.2 \
 	and (Player.state != Player.WALLRUNNING_LEFT or Player.state != Player.WALLRUNNING_RIGHT )\
-	and not Player.slipped
+	and not Player.slipped \
+	and not Player.state == Player.SWINGING
 	if is_idle:
 		Player.state = Player.IDLE
+
 
 
 func set_stamina(v:float) ->void:
@@ -93,7 +95,11 @@ func set_stamina(v:float) ->void:
 
 
 func slip():
+	if Player.slipped:
+		return
+	
 	if not abilities.Shield_Flag:
+		abilities.release_gp()
 		Player._snap_vector = Vector3.ZERO
 		Player.velocity.y = 2
 		Player.velocity.z = Player.velocity.z * 1.75
@@ -102,10 +108,11 @@ func slip():
 		get_up_timer = GET_UP_TIME
 		slip_timer = SLIP_TIME
 		animation.playDeathAnimation()
+		
 	else:
 		abilities.Shield_Flag = false
 		abilities.Shield_Timer = 0.0
-		abilities.current_hability = abilities.HABILITY_NONE
+		abilities.current_ability = abilities.ABILITY_NONE
 		abilities.shield.queue_free()
 
 
@@ -130,13 +137,11 @@ func wall_run(prefix:String)->void:
 		
 		
 		Player.speed = Player.WR_SPEED
-	
+		
 		if Input.get_action_strength(prefix+"left") > 0.0:
 			Player.state = Player.WALLRUNNING_LEFT
-			Player.rotation_degrees.z = 10
 		if Input.get_action_strength(prefix+"right") > 0.0:
 			Player.state = Player.WALLRUNNING_RIGHT
-			Player.rotation_degrees.z = -10
 	
 		wr_flag = true
 		if (wr_slip_timer < 1):
@@ -146,7 +151,6 @@ func wall_run(prefix:String)->void:
 			Player.gravity = Player.WR_GRAVITY
 
 	elif Input.is_action_just_released(prefix+"jump") and wr_flag and Player.is_on_wall():
-		Player.rotation_degrees.z = 0
 		Player.velocity.y = Player.jump_force
 		Player.gravity = Player.NORMAL_GRAVITY
 		Player.speed = Player.NORMAL_SPEED
@@ -157,7 +161,7 @@ func wall_run(prefix:String)->void:
 	else:
 		Player.gravity = Player.NORMAL_GRAVITY
 		Player.speed = Player.NORMAL_SPEED
-		Player.rotation_degrees.z = 0
+		wr_flag = false
 
 
 
@@ -181,7 +185,15 @@ func _is_wall_runnable() -> bool:
 
 
 func jump(input_dir:Vector3, prefix:String, slipped:bool)->void:
+	if Player.jump_timer >0:
+		Player.jump_timer -= global_delta
+	if Player.jump_timer <0.0:
+		Player.jump_flag = false
+		Player.jump_timer = 0.0
+	
 	if Input.is_action_just_pressed(prefix+"jump") and Player.is_on_floor():
+		Player.jump_flag = true
+		Player.jump_timer = Player.JUMP_TIME
 		if is_idle:
 			Player.state = Player.JUMPING
 		elif Input.is_action_pressed(prefix+"run") and input_dir.length() != 0:
@@ -200,8 +212,14 @@ func jump(input_dir:Vector3, prefix:String, slipped:bool)->void:
 	elif Player.is_on_floor() and Player._snap_vector == Vector3.ZERO and Player.velocity.y <= 0.0:
 		if not slipped:
 			Player._snap_vector = Vector3.DOWN
-	if Player.velocity.y < 0 and not Player.is_on_floor(): 
+	if Player.velocity.y < 0 and not (Player.is_on_floor()\
+	or Player.state == Player.SWINGING\
+	or wr_flag): 
 		Player.state = Player.FALLING
+	if Player.velocity.y > 0 and not Player.is_on_floor()\
+	and not (Player.state == Player.SWINGING\
+	or Player.jump_flag): 
+		Player.state = Player.ASCENDING
 
 
 
@@ -226,7 +244,6 @@ func movement(input_dir:Vector3, prefix:String)->void:
 					Player.state = Player.RUNNING
 			if not abilities.RH_Flag:
 				set_stamina(Player.stamina - 10.0 * global_delta)
-				print("diminuindo")
 			Player.speed = Player.RUNNING_SPEED
 			st_timer = 0.0
 		else:
@@ -237,7 +254,6 @@ func movement(input_dir:Vector3, prefix:String)->void:
 			st_timer += global_delta
 			if (Player.stamina < 100.0 and st_timer >= 1.5):
 				set_stamina(Player.stamina + 7.5 * global_delta)
-				print("aumentando")
 		var sp = Player.speed
 		var target_h := Vector3(dir.x * sp, 0.0, dir.z * sp)
 	
@@ -312,19 +328,28 @@ func movement(input_dir:Vector3, prefix:String)->void:
 
 
 func set_grapple(active: bool, anchor := Vector3.ZERO, length := 0.0) -> void:
+	# soltou agora
 	if grapple_active and not active:
 		post_grapple_active = true
 		post_grapple_vel = Vector3(Player.velocity.x, 0.0, Player.velocity.z)
-		post_grapple_ground_timer = -1.0 # só começa quando tocar no chão
+		post_grapple_ground_timer = -1.0
 
-	# se engatar de novo, cancela o pós
-	if active:
+		# saiu do swinging: se estiver no ar, cai
+		if not Player.is_on_floor():
+			Player.state = Player.FALLING
+
+	# engatou agora
+	if active and not grapple_active:
 		post_grapple_active = false
 		post_grapple_ground_timer = -1.0
 	
+		Player._snap_vector = Vector3.ZERO
+		wr_flag = false
+
 	grapple_active = active
 	grapple_anchor = anchor
 	grapple_len = length
+
 
 
 
@@ -425,4 +450,5 @@ func _grapple_air_control(input_dir: Vector3) -> void:
 		v_tan = v_tan.normalized() * GRAPPLE_MAX_TAN_SPEED
 	
 	Player.velocity = v_tan + v_rad
+
 

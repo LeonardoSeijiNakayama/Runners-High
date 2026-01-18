@@ -15,11 +15,13 @@ onready var collision = $CollisionShape
 onready var area = $Area
 onready var fire_animation = $"fire/AnimationPlayer"
 onready var fire = $fire
+onready var audio : AudioStreamPlayer = $"AudioPlayer"
 
+const fliying_audio = preload("res://audios/big-spaceship-missile-1-356318.mp3")
+const explosion_audio = preload("res://audios/loud-explosion-425457.mp3")
 var explosion_scene = preload("res://Fireball.tscn")
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	if target == 1:
 		target_group = "p1_"
@@ -28,7 +30,12 @@ func _ready():
 	collision.set_deferred("disabled", true)
 	area.connect("body_entered", self, "_on_body_entered")
 	ascending_timer = ASCENDING_TIME
-	pass # Replace with function body.
+	fliying_audio.loop = false
+	audio.stream = fliying_audio
+	audio.volume_db = -15
+	audio.pitch_scale = 1.5
+	audio.play()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,6 +83,13 @@ func _on_body_entered(body):
 		if body.is_in_group(target_group):
 			movement.slip()
 	queue_free()
+	var a := AudioStreamPlayer.new()
+	a.stream = explosion_audio
+	a.stream.loop = false
+	get_tree().current_scene.add_child(a)
+	a.volume_db = -20
+	a.play()
+	a.connect("finished", a, "queue_free")
 	var explosion = explosion_scene.instance()
 	get_parent().add_child(explosion)
 	explosion.global_position = global_position

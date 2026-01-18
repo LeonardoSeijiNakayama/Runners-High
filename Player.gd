@@ -12,6 +12,7 @@ const WALLRUNNING_RIGHT = 7
 const FALLING = 8
 const SLIPPED = 9
 const SWINGING = 10
+const ASCENDING = 11
 
 
 export(int, 1, 2) var playerId := 1
@@ -30,6 +31,9 @@ export var stamina := 100.0
 var velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN
 var boost = false
+var jump_flag = false
+var jump_timer = 0.0
+const JUMP_TIME = 0.725
 
 signal stamina_changed(current, maxv)
 
@@ -47,6 +51,8 @@ onready var animation: PlayerAnimation = $Animation
 onready var movement = $Movement
 onready var camera: PlayerCamera = $Camera
 onready var _spring_arm: SpringArm = $SpringArm
+onready var audio = $Audio
+
 
 func _ready():
 	if playerId == 1:
@@ -90,6 +96,7 @@ func _physics_process(delta: float):
 
 func _process(_delta) -> void:
 	animation.update(state, slipped)
+	audio.update(state, slipped)
 	abilities.handle_input()
 	_spring_arm.translation = translation
 

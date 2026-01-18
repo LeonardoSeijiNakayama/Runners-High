@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/wind-blowing-457954.mp3-9d8d56a8b2d89aa4678496b4962450aa.mp3str"
+
+[deps]
+
+source_file="res://audios/wind-blowing-457954.mp3"
+dest_files=[ "res://.import/wind-blowing-457954.mp3-9d8d56a8b2d89aa4678496b4962450aa.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

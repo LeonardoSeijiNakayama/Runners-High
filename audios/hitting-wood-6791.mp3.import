@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/hitting-wood-6791.mp3-4dad057afde35baf513b7fd0f8c1ca89.mp3str"
+
+[deps]
+
+source_file="res://audios/hitting-wood-6791.mp3"
+dest_files=[ "res://.import/hitting-wood-6791.mp3-4dad057afde35baf513b7fd0f8c1ca89.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

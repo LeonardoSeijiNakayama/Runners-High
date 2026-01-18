@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dando-corda-449901.mp3-416bdaa8f11a84f1132dc766365b2e4b.mp3str"
+
+[deps]
+
+source_file="res://audios/dando-corda-449901.mp3"
+dest_files=[ "res://.import/dando-corda-449901.mp3-416bdaa8f11a84f1132dc766365b2e4b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

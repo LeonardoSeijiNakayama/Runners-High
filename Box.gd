@@ -17,9 +17,13 @@ var REESPAWN_TIME = 5.0
 var reespawn_timer = 0.0
 const DISAPPEAR_TIME := 0.5
 
+onready var audio := $AudioStreamPlayer
+onready var pick_up : AudioStream = preload("res://audios/pick_up.mp3")
+
 
 
 func _ready():
+	pick_up.loop = false
 	connect("area_entered", self, "_on_area_entered")
 	original_scale = scale
 	pass 
@@ -99,8 +103,11 @@ func _on_area_entered(area):
 	if area.is_in_group("Player"):
 		var player = area.get_parent()
 		var playerAbilities = player.get_child(0)
-		if playerAbilities.current_hability == playerAbilities.HABILITY_NONE:
+		if playerAbilities.current_ability == playerAbilities.ABILITY_NONE:
 			if not catched:
-				playerAbilities.get_new_hability()
+				playerAbilities.get_new_ability()
 				disappearing = true
 				catched = true
+				audio.stream = pick_up
+				audio.volume_db = -20
+				audio.play()

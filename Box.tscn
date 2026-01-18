@@ -22,3 +22,5 @@ mesh = SubResource( 2 )
 
 [node name="box_low_poly" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, -0.0252415, -0.070269 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

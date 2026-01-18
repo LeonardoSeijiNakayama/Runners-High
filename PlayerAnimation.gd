@@ -31,12 +31,19 @@ func update(state: int, slipped: bool) -> void:
 				_animation_player.play("HumanArmature|Man_RunningJump",-1,1.5)
 				lastState = state
 			Player.WALLRUNNING_LEFT:
-				_animation_player.play("HumanArmature|Man_Walk")
+				_animation_player.play("HumanArmature|Sliding_Left")
 				lastState = state
 			Player.WALLRUNNING_RIGHT:
-				_animation_player.play("HumanArmature|Man_Clapping")
+				_animation_player.play("HumanArmature|Sliding_Right")
 				lastState = state
 			Player.FALLING:
+				_animation_player.play("HumanArmature|Man_Falling")
+				lastState = state
+			Player.ASCENDING:
+				_animation_player.play("HumanArmature|Man_Ascending")
+				lastState = state
+			Player.SWINGING:
+				_animation_player.play("HumanArmature|Man_Swinging")
 				lastState = state
 
 

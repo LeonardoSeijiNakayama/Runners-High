@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tides of the Jaguar Temple.mp3-ee515958657ef71f6c6b31666cb77aea.mp3str"
+
+[deps]
+
+source_file="res://audios/Tides of the Jaguar Temple.mp3"
+dest_files=[ "res://.import/Tides of the Jaguar Temple.mp3-ee515958657ef71f6c6b31666cb77aea.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

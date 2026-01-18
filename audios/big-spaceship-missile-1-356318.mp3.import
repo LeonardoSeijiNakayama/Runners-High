@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/big-spaceship-missile-1-356318.mp3-66e734bd1223f279f65dbcdd1d171f51.mp3str"
+
+[deps]
+
+source_file="res://audios/big-spaceship-missile-1-356318.mp3"
+dest_files=[ "res://.import/big-spaceship-missile-1-356318.mp3-66e734bd1223f279f65dbcdd1d171f51.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/9-7-cartoon-slip.mp3-d96bf58a87b8c6d988123aa89c2e10be.mp3str"
+
+[deps]
+
+source_file="res://audios/9-7-cartoon-slip.mp3"
+dest_files=[ "res://.import/9-7-cartoon-slip.mp3-d96bf58a87b8c6d988123aa89c2e10be.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/game-level-complete-143022.mp3-ff101e3e2784526cdcd7bd86aa374a72.mp3str"
+
+[deps]
+
+source_file="res://audios/game-level-complete-143022.mp3"
+dest_files=[ "res://.import/game-level-complete-143022.mp3-ff101e3e2784526cdcd7bd86aa374a72.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

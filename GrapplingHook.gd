@@ -2,6 +2,9 @@ extends KinematicBody
 
 onready var collision = $CollisionShape
 onready var area = $Area
+onready var audio = $AudioStreamPlayer
+onready var corda = preload("res://audios/dando-corda-449901.mp3")
+onready var hit = preload("res://audios/hitting-wood-6791.mp3")
 
 var player_id
 var hooked = false
@@ -11,6 +14,9 @@ var run_distance = null
 var velocity = Vector3.ZERO
 var player
 var anchor_pos = Vector3() 
+var spawn_offset_up := Vector3.UP * 1.2 
+
+
 
 onready var rope = $RopeMesh
 
@@ -21,19 +27,27 @@ func _ready():
 		player = pArray[0]
 	collision.set_deferred("disabled", true)
 	area.connect("body_entered", self, "_on_body_entered")
+	hit.loop = false
+	
 
 
 func _physics_process(_delta):
 	if not hooked:
 		velocity = -transform.basis.z * speed
 		move_and_slide(velocity)
+		audio.pitch_scale = 2.0
+		if not audio.playing:
+			audio.stream = corda
+			audio.volume_db = -10
+			audio.play()
 	else:
 		global_transform.origin = anchor_pos
 	_update_rope()
 
 
 func _update_rope() -> void:
-	var p0 = player.global_transform.origin
+	var p0 = player.global_transform.origin + spawn_offset_up
+
 	var p1
 	if hooked:
 		p1 = anchor_pos
@@ -58,6 +72,9 @@ func get_hooked() -> void:
 	velocity = Vector3.ZERO
 	anchor_pos = global_transform.origin
 	area.set_deferred("monitoring", false)
+	audio.stream = hit
+	if not audio.playing:
+		audio.play()
 	
 	if player:
 		distance = anchor_pos.distance_to(player.global_transform.origin)

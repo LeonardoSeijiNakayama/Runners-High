@@ -30,16 +30,16 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 5
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -23, 0, 51.5 )
 
 [node name="Pillar" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.725343, -20.1804, 51.2133 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.725343, -35.0053, 51.2133 )
 
 [node name="Pillar4" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0435743, -20.1804, 19.0047 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0435743, -35.0053, 19.0047 )
 
 [node name="Pillar5" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0168471, -20.1804, -8.47593 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0168471, -35.0053, -8.47593 )
 
 [node name="Pillar2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2843, -20.18, 52.1897 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2843, -35.0053, 52.1897 )
 
 [node name="Pillar3" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9979, -20.18, 91.4066 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.998, -35.0053, 91.407 )

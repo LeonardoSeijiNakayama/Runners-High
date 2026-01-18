@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pick_up.mp3-d3453c902efa66bddd19712ee1bea8f9.mp3str"
+
+[deps]
+
+source_file="res://audios/pick_up.mp3"
+dest_files=[ "res://.import/pick_up.mp3-d3453c902efa66bddd19712ee1bea8f9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

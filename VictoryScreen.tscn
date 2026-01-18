@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Man2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://VictoryScreen.gd" type="Script" id=2]
+[ext_resource path="res://fonts/Route 26.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Island2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TempleRuins.tscn" type="PackedScene" id=5]
+[ext_resource path="res://btn_pressed.tres" type="StyleBox" id=6]
+[ext_resource path="res://btn_normal.tres" type="StyleBox" id=7]
+[ext_resource path="res://btn_hover.tres" type="StyleBox" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 26
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 26
+font_data = ExtResource( 3 )
+
+[node name="VictoryScreen" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+margin_left = 160.0
+margin_top = 172.0
+margin_right = 800.0
+margin_bottom = 368.0
+custom_constants/separation = 64
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
+margin_right = 640.0
+margin_bottom = 68.0
+custom_constants/separation = 128
+alignment = 1
+
+[node name="WinnerLabel" type="Label" parent="Control/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 82.0
+margin_right = 557.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 1 )
+text = "Player - won!"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
+margin_top = 132.0
+margin_right = 640.0
+margin_bottom = 196.0
+custom_constants/separation = 128
+alignment = 1
+
+[node name="PlayAgainBtn" type="Button" parent="Control/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 256.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/normal = ExtResource( 7 )
+text = "Play Again"
+
+[node name="MenuBtn" type="Button" parent="Control/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 384.0
+margin_right = 640.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/normal = ExtResource( 7 )
+text = "Menu"
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.74808, 18.5604 )
+current = true
+
+[node name="Winner" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.858074, 0, 0.513526, 0, 1, 0, -0.513526, 0, 0.858074, -3.55042, 0, 13.6013 )
+
+[node name="Loser" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.520339, 0, -0.85396, 0, 1, 0, 0.85396, 0, 0.520339, 3.60803, 0, 10.5242 )
+
+[node name="Island2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.899725, 0, -0.436456, 0, 1, 0, 0.436456, 0, 0.899725, 0, -1.13, -67.414 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.9203, 28.0702 )
+light_color = Color( 1, 0.890196, 0.396078, 1 )
+light_energy = 0.3
+
+[node name="TempleRuins" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.806868, 0, -0.590732, 0, 1, 0, 0.590732, 0, 0.806868, 3.5322, -1, -7.09995 )
+
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/HBoxContainer2/PlayAgainBtn" to="." method="_on_PlayAgainBtn_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/HBoxContainer2/MenuBtn" to="." method="_on_MenuBtn_pressed"]

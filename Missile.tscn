@@ -27,3 +27,20 @@ shape = SubResource( 2 )
 
 [node name="fire" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.025, 0, 0, 0, -1.09278e-09, -0.025, 0, 0.025, -1.09278e-09, -0.0225529, 0.0520272, 0.584152 )
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+bus = "SFX"
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.996195, 0.0871556, 0, -0.0871556, -0.996195, 0, 0, -0.0743185 )
+light_color = Color( 1, 0.74902, 0.00392157, 1 )
+light_energy = 8.0
+omni_range = 0.5
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0 )
+light_color = Color( 1, 0.74902, 0.00392157, 1 )
+light_energy = 3.0
+spot_range = 8.0
+spot_angle = 10.0

@@ -1,7 +1,6 @@
 extends Spatial
 
 export var mouse_sensitivity := 0.05
-
 export var stick_sensitivity := 180.0
 export var stick_deadzone := 0.15
 

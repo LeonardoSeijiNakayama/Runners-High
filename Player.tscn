@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://PlayerCameraNode.gd" type="Script" id=1]
 [ext_resource path="res://PlayerLaps.gd" type="Script" id=2]
@@ -7,14 +7,24 @@
 [ext_resource path="res://PlayerAnimation.gd" type="Script" id=5]
 [ext_resource path="res://PlayerMovement.gd" type="Script" id=6]
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=7]
-[ext_resource path="res://Man2Model.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Man2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://PlayerAudio.gd" type="Script" id=9]
+[ext_resource path="res://psy_fx.gdshader" type="Shader" id=10]
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = ExtResource( 10 )
+shader_param/strength = 0.0
+shader_param/speed = 1.5
+shader_param/wave_amp = 0.008
+shader_param/wave_freq = 10.0
+shader_param/hue_speed = 0.15
 
 [sub_resource type="BoxShape" id=17]
 extents = Vector3( 0.603011, 1, 0.696879 )
 
 [sub_resource type="CapsuleShape" id=18]
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=["Player"]]
 script = ExtResource( 3 )
 
 [node name="Abilities" type="Node" parent="."]
@@ -32,6 +42,12 @@ script = ExtResource( 7 )
 [node name="Laps" type="Node" parent="."]
 script = ExtResource( 2 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Laps"]
+bus = "SFX"
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource( 9 )
+
 [node name="Man2" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.91503, 0.0750269 )
 
@@ -43,6 +59,15 @@ script = ExtResource( 1 )
 [node name="Camera" type="Camera" parent="SpringArm"]
 far = 250.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="SpringArm/Camera"]
+
+[node name="PsyFX" type="ColorRect" parent="SpringArm/Camera/CanvasLayer"]
+visible = false
+material = SubResource( 19 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
 [node name="InteractionArea" type="Area" parent="." groups=["Player"]]
 
 [node name="CollisionShape" type="CollisionShape" parent="InteractionArea"]
@@ -52,3 +77,6 @@ shape = SubResource( 17 )
 [node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 0.5, 0, 0, 0, -2.65356e-08, -0.775827, 0, 0.5, -2.79316e-08, 0, -0.136123, 0.0598154 )
 shape = SubResource( 18 )
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+bus = "SFX"

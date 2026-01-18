@@ -2,9 +2,9 @@ extends Control
 
 export(String, "p1_","p2_") var player_group := "p1_"
 
-onready var bar := $StaminaBar
-onready var abilityIcon := $AbilityIcon
-onready var abilityLabel := $AbilityLabel
+onready var bar := $Stamina/StaminaBar
+onready var abilityIcon := $Ability/AbilityIcon
+onready var abilityLabel := $Ability/AbilityLabel
 onready var lapsLabel := $LapsLabel
 
 # Called when the node enters the scene tree for the first time.

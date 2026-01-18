@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Bar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -31,6 +31,31 @@
 [ext_resource path="res://Boat.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Pier.tscn" type="PackedScene" id=30]
 [ext_resource path="res://icon.png" type="Texture" id=31]
+[ext_resource path="res://fonts/Route 26.otf" type="DynamicFontData" id=32]
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 32 )
+
+[sub_resource type="DynamicFont" id=15]
+font_data = ExtResource( 32 )
+
+[sub_resource type="DynamicFont" id=16]
+font_data = ExtResource( 32 )
+
+[sub_resource type="DynamicFont" id=17]
+font_data = ExtResource( 32 )
+
+[sub_resource type="DynamicFont" id=18]
+font_data = ExtResource( 32 )
+
+[sub_resource type="DynamicFont" id=19]
+font_data = ExtResource( 32 )
+
+[sub_resource type="DynamicFont" id=20]
+font_data = ExtResource( 32 )
+
+[sub_resource type="DynamicFont" id=21]
+font_data = ExtResource( 32 )
 
 [sub_resource type="Environment" id=13]
 background_mode = 1
@@ -67,6 +92,7 @@ script = ExtResource( 24 )
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
 custom_constants/separation = 0
 
 [node name="ViewportContainer2" type="ViewportContainer" parent="HBoxContainer"]
@@ -85,59 +111,70 @@ render_target_update_mode = 3
 [node name="Player1" parent="HBoxContainer/ViewportContainer2/Viewport" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -8 )
 
-[node name="HUD" type="Control" parent="HBoxContainer/ViewportContainer2/Viewport"]
+[node name="CanvasLayer" type="CanvasLayer" parent="HBoxContainer/ViewportContainer2/Viewport"]
+
+[node name="HUD" type="Control" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 480.0
-margin_bottom = 40.0
 rect_min_size = Vector2( 480, 540 )
 mouse_filter = 2
 script = ExtResource( 6 )
 
-[node name="StaminaBar" type="ProgressBar" parent="HBoxContainer/ViewportContainer2/Viewport/HUD"]
-anchor_left = 0.005
-anchor_top = 0.9
-anchor_right = 0.6
-anchor_bottom = 0.91
-margin_right = -230.0
-margin_bottom = 13.2
-rect_min_size = Vector2( 350, 19 )
-
-[node name="StaminaLabel" type="Label" parent="HBoxContainer/ViewportContainer2/Viewport/HUD"]
-anchor_left = 0.005
-anchor_top = 0.87
+[node name="LapsLabel" type="Label" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD"]
+anchor_left = 0.8
+anchor_top = 0.013
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 40.0
 margin_bottom = 14.0
-text = "Stamina"
+custom_fonts/font = SubResource( 14 )
+text = "Laps: 0/3"
 
-[node name="AbilityIcon" type="TextureRect" parent="HBoxContainer/ViewportContainer2/Viewport/HUD"]
-anchor_left = 0.005
-anchor_top = 0.005
-anchor_right = 1.0
-anchor_bottom = 0.005
+[node name="Ability" type="Control" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD"]
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 31 )
 
-[node name="AbilityLabel" type="Label" parent="HBoxContainer/ViewportContainer2/Viewport/HUD"]
-anchor_left = 0.005
-anchor_top = 0.13
+[node name="AbilityIcon" type="TextureRect" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD/Ability"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 6.6
+margin_top = 40.0
+margin_right = 46.6
+margin_bottom = 80.0
+texture = ExtResource( 31 )
+
+[node name="AbilityLabel" type="Label" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD/Ability"]
+anchor_left = 0.05
+anchor_top = 0.03
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.6
+margin_top = 105.0
+margin_right = 46.6
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 15 )
 text = "Ability: -"
 
-[node name="LapsLabel" type="Label" parent="HBoxContainer/ViewportContainer2/Viewport/HUD"]
-anchor_left = 0.24
-anchor_top = 0.005
-anchor_right = 240.0
-anchor_bottom = 1.0
+[node name="Stamina" type="Control" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD"]
 margin_right = 40.0
-margin_bottom = 14.0
-text = "Laps: 0/3"
+margin_bottom = 40.0
+
+[node name="StaminaLabel" type="Label" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD/Stamina"]
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.05
+anchor_bottom = 0.1
+custom_fonts/font = SubResource( 16 )
+text = "Stamina"
+
+[node name="StaminaBar" type="ProgressBar" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD/Stamina"]
+anchor_top = 0.4
+anchor_bottom = 0.4
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 350.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 17 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="HBoxContainer"]
 margin_left = 480.0
@@ -156,58 +193,68 @@ render_target_update_mode = 3
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -8 )
 playerId = 2
 
-[node name="HUD" type="Control" parent="HBoxContainer/ViewportContainer/Viewport"]
+[node name="CanvasLayer" type="CanvasLayer" parent="HBoxContainer/ViewportContainer/Viewport"]
+
+[node name="HUD" type="Control" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 40.0
-margin_bottom = 40.0
 mouse_filter = 2
 script = ExtResource( 6 )
 player_group = "p2_"
 
-[node name="StaminaBar" type="ProgressBar" parent="HBoxContainer/ViewportContainer/Viewport/HUD"]
-anchor_left = 0.005
-anchor_top = 0.9
-anchor_right = 0.6
-anchor_bottom = 0.91
-margin_right = 4.0
-margin_bottom = 14.0
-
-[node name="StaminaLabel" type="Label" parent="HBoxContainer/ViewportContainer/Viewport/HUD"]
-anchor_left = 0.005
-anchor_top = 0.87
+[node name="LapsLabel" type="Label" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD"]
+anchor_left = 0.8
+anchor_top = 0.013
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Stamina"
+custom_fonts/font = SubResource( 18 )
+text = "Laps: 0/3"
 
-[node name="AbilityIcon" type="TextureRect" parent="HBoxContainer/ViewportContainer/Viewport/HUD"]
-anchor_left = 0.005
-anchor_top = 0.005
-anchor_right = 1.0
-anchor_bottom = 0.005
+[node name="Ability" type="Control" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD"]
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 31 )
 
-[node name="AbilityLabel" type="Label" parent="HBoxContainer/ViewportContainer/Viewport/HUD"]
-anchor_left = 0.005
-anchor_top = 0.13
-anchor_right = 1.0
-anchor_bottom = 0.13
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Ability: -"
-
-[node name="LapsLabel" type="Label" parent="HBoxContainer/ViewportContainer/Viewport/HUD"]
-anchor_left = 0.42
-anchor_top = 0.005
+[node name="AbilityIcon" type="TextureRect" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD/Ability"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 6.6
+margin_top = 40.0
+margin_right = 46.6
+margin_bottom = 80.0
+texture = ExtResource( 31 )
+
+[node name="AbilityLabel" type="Label" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD/Ability"]
+anchor_left = 0.05
+anchor_top = 0.03
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.6
+margin_top = 105.0
+margin_right = 46.5996
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 19 )
+text = "Ability: -"
+
+[node name="Stamina" type="Control" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD"]
 margin_right = 40.0
-margin_bottom = 14.0
-text = "Laps: 0/3"
+margin_bottom = 40.0
+
+[node name="StaminaLabel" type="Label" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD/Stamina"]
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 20 )
+text = "Stamina"
+
+[node name="StaminaBar" type="ProgressBar" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD/Stamina"]
+anchor_top = 0.4
+anchor_bottom = 0.4
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 350.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 21 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 13 )
@@ -227,7 +274,7 @@ light_energy = 0.75
 shadow_enabled = true
 
 [node name="Water" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30.6717, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.138155, -30.7383, 0.0594749 )
 
 [node name="Platforms" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.6768, -45 )
@@ -271,18 +318,30 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.7093, 36.8993 )
 [node name="Pista1" parent="Platforms" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -5.3232, 20 )
 
+[node name="Pista3" parent="Platforms" instance=ExtResource( 5 )]
+transform = Transform( -0.523958, 0, -0.29235, 0, 0.6, 0, 0.29235, 0, -0.523958, 6.53317, 0.225239, 21.3178 )
+
+[node name="Pista2" parent="Platforms" instance=ExtResource( 5 )]
+transform = Transform( -0.423798, 0, -1.12267, 0, 1.2, 0, 1.12267, 0, -0.423798, 8.38001, -25.5587, 19.0304 )
+
 [node name="WRWalls" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.62939e-06, -45 )
 
 [node name="Wall1" parent="WRWalls" instance=ExtResource( 4 )]
-transform = Transform( -2.18557e-08, 0.5, 0.866026, -1, -4.37114e-08, 0, 3.78552e-08, -0.866025, 0.5, -6.44074, 2, -34.941 )
+transform = Transform( -2.18557e-08, 0.5, 0.866026, -1, -4.37114e-08, 0, 3.78552e-08, -0.866025, 0.5, -6.44074, -1.01501, -34.941 )
 script = SubResource( 12 )
 
 [node name="Wall2" parent="WRWalls" instance=ExtResource( 4 )]
-transform = Transform( -2.18557e-08, 0.5, 0.866026, -1, -4.37114e-08, 0, 3.78552e-08, -0.866025, 0.5, 8.4055, 2, -44.999 )
+transform = Transform( -2.18557e-08, 0.5, 0.866026, -1, -4.37114e-08, 0, 3.78552e-08, -0.866025, 0.5, 8.4055, -1.01501, -44.999 )
 
 [node name="GPBar" parent="WRWalls" instance=ExtResource( 1 )]
-transform = Transform( 0.824, 0, -0.567, 0, 1, 0, 0.567, 0, 0.824, 19, 5.99999, -66 )
+transform = Transform( 0.823217, 0.0359341, -0.566998, -0.0436295, 0.999048, 0, 0.566459, 0.0247264, 0.824001, 19, 5.99999, -66 )
+
+[node name="Pillar" parent="WRWalls" instance=ExtResource( 23 )]
+transform = Transform( 0.819152, 0, -0.573577, 0, 1, 0, 0.573577, 0, 0.819152, 11.5331, -28.505, -71.1571 )
+
+[node name="Pillar2" parent="WRWalls" instance=ExtResource( 23 )]
+transform = Transform( 0.819152, 0, -0.573577, 0, 1, 0, 0.573577, 0, 0.819152, 26.4385, -28.505, -60.868 )
 
 [node name="Pillars" type="Spatial" parent="."]
 transform = Transform( 1.57743, 21.474, -0.059721, 0, 22.405, 0.171257, 1.11767, -30.3076, 0.0842878, 60.1498, 6.07103, -183.924 )
@@ -324,21 +383,24 @@ id = 2
 [node name="Pista2" parent="Pillars" instance=ExtResource( 5 )]
 transform = Transform( -0.04795, 2.34549e-07, 0.515035, 0.019655, 0.011907, 0.00182993, -2.5714, 4.28142, -0.239404, 3.87848, -1.15651, -65.2927 )
 
+[node name="Pista3" parent="Pillars" instance=ExtResource( 5 )]
+transform = Transform( -0.210307, 1.76336e-07, 0.472579, 0.0180348, 0.011907, 0.00802584, -2.35943, 4.28142, -1.04999, 7.08077, -1.23862, -137.282 )
+
 [node name="Node" type="Node" parent="Pillars"]
 
 [node name="GPBars" type="Spatial" parent="."]
 
 [node name="StaticBody2" parent="GPBars" instance=ExtResource( 1 )]
-transform = Transform( 0.475773, 0, -0.307507, 0, 1, 0, 0.153754, 0, 0.951546, 94.8483, 28.7765, -244.619 )
+transform = Transform( 0.422318, 0, -0.535342, 0, 1, 0, 0.267671, 0, 0.844636, 94.8483, 28.7765, -244.619 )
 
 [node name="StaticBody3" parent="GPBars" instance=ExtResource( 1 )]
-transform = Transform( 0.391255, 0, -0.207963, 0, 1, 0, 0.0831851, 0, 0.978137, 110.204, 36.6484, -282.643 )
+transform = Transform( 0.684696, 0, -0.207963, 0, 1, 0, 0.145574, 0, 0.978137, 110.204, 36.6484, -282.643 )
 
 [node name="StaticBody4" parent="GPBars" instance=ExtResource( 1 )]
-transform = Transform( 0.211167, 0, -0.849295, 0, 1, 0, 0.339718, 0, 0.527919, 145.817, 33.1417, -301.613 )
+transform = Transform( 0.369543, 0, -0.849295, 0, 1, 0, 0.594507, 0, 0.527918, 145.817, 33.1417, -301.613 )
 
 [node name="StaticBody5" parent="GPBars" instance=ExtResource( 1 )]
-transform = Transform( 0.349181, 0, -0.813213, 0, 1, 0, 0.487927, 0, 0.581967, 193.541, -2.29673, -337.936 )
+transform = Transform( 0.407378, 0, -0.813212, 0, 1, 0, 0.569248, 0, 0.581968, 193.541, -2.29673, -337.936 )
 
 [node name="Box" parent="GPBars" instance=ExtResource( 7 )]
 transform = Transform( 0.988073, 0, -0.153986, 0, 1, 0, 0.153986, 0, 0.988073, 184.949, 0, -330.195 )
@@ -356,6 +418,30 @@ jumpPower = 40
 
 [node name="StaticBody" parent="GPBars" instance=ExtResource( 5 )]
 transform = Transform( 0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, 228, -31.4628, -354.454 )
+
+[node name="Pillar" parent="GPBars" instance=ExtResource( 23 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 91.0259, -7, -247.015 )
+
+[node name="Pillar2" parent="GPBars" instance=ExtResource( 23 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 98.634, -7, -242.338 )
+
+[node name="Pillar3" parent="GPBars" instance=ExtResource( 23 )]
+transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 104, 1.0538, -284 )
+
+[node name="Pillar4" parent="GPBars" instance=ExtResource( 23 )]
+transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 116.5, 1.0538, -281.301 )
+
+[node name="Pillar5" parent="GPBars" instance=ExtResource( 23 )]
+transform = Transform( 0.571315, 0, -0.820731, 0, 1, 0, 0.820731, 0, 0.571315, 142.236, -1.37509, -306.537 )
+
+[node name="Pillar7" parent="GPBars" instance=ExtResource( 23 )]
+transform = Transform( 0.788011, 0, 0.615661, 0, 1, 0, -0.615661, 0, 0.788011, 190.047, -36.9486, -343.033 )
+
+[node name="Pillar8" parent="GPBars" instance=ExtResource( 23 )]
+transform = Transform( 0.788011, 0, 0.615661, 0, 1, 0, -0.615661, 0, 0.788011, 197.116, -36.9486, -332.954 )
+
+[node name="Pillar6" parent="GPBars" instance=ExtResource( 23 )]
+transform = Transform( 0.571315, 0, -0.820731, 0, 1, 0, 0.820731, 0, 0.571315, 148.879, -1.37509, -296.202 )
 
 [node name="BigWalls" type="Spatial" parent="."]
 
@@ -376,6 +462,12 @@ transform = Transform( 0.758578, 0, 0.651582, 0, 1, 0, -0.651582, 0, 0.758578, 4
 
 [node name="BigWall" parent="BigWalls" instance=ExtResource( 14 )]
 transform = Transform( -0.259257, 0, 0.965808, 0, 1, 0, -0.965808, 0, -0.259257, 470.11, 29.7964, -253.71 )
+
+[node name="Pillar" parent="BigWalls" instance=ExtResource( 23 )]
+transform = Transform( 0.692282, 0, -0.721627, 0, 1.1, 0, 0.721627, 0, 0.692282, 432.803, 3.70974, -279.812 )
+
+[node name="Pillar2" parent="BigWalls" instance=ExtResource( 23 )]
+transform = Transform( 0.692282, 0, -0.721627, 0, 1.1, 0, 0.721627, 0, 0.692282, 446.556, 3.70974, -291.466 )
 
 [node name="Maze" parent="." instance=ExtResource( 16 )]
 transform = Transform( 0.173648, 0, -0.984807, 0, 1, 0, 0.984807, 0, 0.173648, 485.847, 27.5842, -214.674 )
@@ -444,6 +536,36 @@ transform = Transform( 0.96974, 0, -0.24414, 0, 1, 0, 0.24414, 0, 0.96974, -178.
 [node name="Box7" parent="BarsAndWallsTrack" instance=ExtResource( 7 )]
 transform = Transform( 0.96974, 0, -0.24414, 0, 1, 0, 0.24414, 0, 0.96974, -177.68, -15.7369, 63.4954 )
 
+[node name="Pillar" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.926883, 0, 0.375351, 0, 1, 0, -0.375351, 0, 0.926883, -83.1935, -32.0907, 64.6063 )
+
+[node name="Pillar2" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.926883, 0, 0.375351, 0, 1, 0, -0.375351, 0, 0.926883, -76.7906, -32.0907, 81.3044 )
+
+[node name="Pillar3" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.929783, 0, 0.368108, 0, 1, 0, -0.368108, 0, 0.929783, -18.1429, -25.4374, 36.136 )
+
+[node name="Pillar4" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.929783, 0, 0.368108, 0, 1, 0, -0.368108, 0, 0.929783, -11.5048, -25.4374, 52.5106 )
+
+[node name="Pillar5" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.907748, 0, -0.419515, 0, 1, 0, 0.419515, 0, 0.907748, 22.9846, -30.7031, -2.87282 )
+
+[node name="Pillar6" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.907748, 0, -0.419515, 0, 1, 0, 0.419515, 0, 0.907748, 38.6215, -30.7031, 4.63409 )
+
+[node name="Pillar7" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.873143, 0, -0.487463, 0, 1, 0, 0.487463, 0, 0.873143, 32.7587, -35.8412, -24.0624 )
+
+[node name="Pillar8" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.873143, 0, -0.487463, 0, 1, 0, 0.487463, 0, 0.873143, 49.4146, -35.8412, -16.9806 )
+
+[node name="Pillar9" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.881064, 0, -0.472997, 0, 1, 0, 0.472997, 0, 0.881064, 45.1365, -41.2902, -51.4188 )
+
+[node name="Pillar10" parent="BarsAndWallsTrack" instance=ExtResource( 23 )]
+transform = Transform( 0.881064, 0, -0.472997, 0, 1, 0, 0.472997, 0, 0.881064, 61.2435, -41.2902, -43.9931 )
+
 [node name="Bridge" parent="." instance=ExtResource( 19 )]
 transform = Transform( -0.241922, 0, -0.970296, 0, 1, 0, 0.970296, 0, -0.241922, 263.484, -16.631, 185.569 )
 
@@ -479,6 +601,9 @@ final = true
 [node name="Track" parent="Ramp" instance=ExtResource( 5 )]
 transform = Transform( 0.638204, 0, -0.769868, 0, 1, 0, 0.769868, 0, 0.638204, 35.588, -39.8304, 64.3619 )
 
+[node name="Track2" parent="Ramp" instance=ExtResource( 5 )]
+transform = Transform( 0.359293, -0.536084, 3.9055e-08, 0, -2.62268e-08, -1, 0.714779, 0.26947, -1.96315e-08, 41.5649, -34.7611, 65.8611 )
+
 [node name="Box" parent="Ramp" instance=ExtResource( 7 )]
 transform = Transform( 0.732733, 0, -0.680516, 0, 1, 0, 0.680516, 0, 0.732733, 60.7697, -3.76875, 95.164 )
 
@@ -491,53 +616,59 @@ transform = Transform( 0.732733, 0, -0.680516, 0, 1, 0, 0.680516, 0, 0.732733, 6
 [node name="PlankHorizontal" parent="Ramp" instance=ExtResource( 20 )]
 transform = Transform( 0.766044, 0.219846, 0.604023, 0, 0.939693, -0.34202, -0.642788, 0.262003, 0.719846, 17, -11.5882, 41.8001 )
 
-[node name="Pillar" parent="Ramp" instance=ExtResource( 23 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8868, -28.6747, 35.4861 )
-
 [node name="StaticBody" parent="Ramp" instance=ExtResource( 1 )]
 transform = Transform( 0.948224, 0, 0.317603, 0, 1, 0, -0.317603, 0, 0.948224, 4.67924, -0.776383, 18.7282 )
+
+[node name="Pillar2" parent="Ramp" instance=ExtResource( 23 )]
+transform = Transform( 0.914805, 0, 0.403897, 0, 1, 0, -0.403897, 0, 0.914805, -3.89951, -34.8972, 21.6265 )
+
+[node name="Pillar3" parent="Ramp" instance=ExtResource( 23 )]
+transform = Transform( 0.914805, 0, 0.403897, 0, 1, 0, -0.403897, 0, 0.914805, 13.0315, -34.8972, 15.6361 )
 
 [node name="Props" type="Spatial" parent="."]
 
 [node name="Island1" type="Spatial" parent="Props"]
 
 [node name="Island" parent="Props/Island1" instance=ExtResource( 25 )]
-transform = Transform( 0.968821, 0, 0.24776, 0, 1, 0, -0.24776, 0, 0.968821, -217.964, -37.0073, -16.0965 )
+transform = Transform( -0.59982, 0, 0.800135, 0, 1, 0, -0.800135, 0, -0.59982, -174.707, -37.0073, -7.25172 )
 
 [node name="Island7" parent="Props/Island1" instance=ExtResource( 25 )]
-transform = Transform( -0.363915, 0, -0.16603, 0, 0.6, 0, 0.16603, 0, -0.363915, -215.263, -19.335, -30.8672 )
+transform = Transform( 0.292713, 0, -0.272615, 0, 0.6, 0, 0.272615, 0, 0.292713, -189.387, -19.335, -4.09153 )
+
+[node name="Island11" parent="Props/Island1" instance=ExtResource( 25 )]
+transform = Transform( -0.399135, 0, -0.0262871, 0, 0.6, 0, 0.0262871, 0, -0.399135, -149.621, -37.6022, 68.7674 )
 
 [node name="Island8" parent="Props/Island1" instance=ExtResource( 25 )]
-transform = Transform( 0.154104, 0, 0.196855, 0, 0.35, 0, -0.196855, 0, 0.154104, -210.677, -8.66093, -23.5238 )
+transform = Transform( -0.240857, 0, 0.0669901, 0, 0.5, 0, -0.0669901, 0, -0.240857, -184.359, -8.75379, -11.1397 )
 
 [node name="Island9" parent="Props/Island1" instance=ExtResource( 25 )]
-transform = Transform( -0.183326, 0, 0.0799483, 0, 0.3, 0, -0.0799483, 0, -0.183326, -167.6, -19.335, 78.3501 )
+transform = Transform( -0.00366487, 0, -0.199967, 0, 0.3, 0, 0.199967, 0, -0.00366487, -106.741, -18.214, -89.9394 )
 
 [node name="Island10" parent="Props/Island1" instance=ExtResource( 25 )]
-transform = Transform( 0.0128035, 0, 0.124343, 0, 0.175, 0, -0.124343, 0, 0.0128035, -170.51, -13.9322, 85.1232 )
+transform = Transform( -0.11977, 0, -0.0357801, 0, 0.3, 0, 0.0357801, 0, -0.11977, -99.3696, -13.3525, -89.8444 )
 
 [node name="Island2" type="Spatial" parent="Props"]
 
 [node name="Island3" parent="Props/Island2" instance=ExtResource( 26 )]
-transform = Transform( 0.633313, 0, 0.773896, 0, 1, 0, -0.773896, 0, 0.633313, -57.4524, -31.3373, -422.065 )
+transform = Transform( 0.13364, 0, 0.99103, 0, 1, 0, -0.99103, 0, 0.13364, -77.8469, -31.3373, -327.163 )
 
 [node name="Island4" parent="Props/Island2" instance=ExtResource( 26 )]
-transform = Transform( 0.0904807, 0, 0.178363, 0, 0.2, 0, -0.178363, 0, 0.0904807, 63.8258, -32.2874, -412.887 )
+transform = Transform( -0.016447, 0, 0.199323, 0, 0.2, 0, -0.199323, 0, -0.016447, 30.2435, -32.2874, -382.922 )
 
 [node name="Island6" parent="Props/Island2" instance=ExtResource( 26 )]
-transform = Transform( 0.023755, 0, -0.0971375, 0, 0.1, 0, 0.0971375, 0, 0.023755, 48.237, -31.7336, -377.363 )
+transform = Transform( 0.0711499, 0, -0.0702687, 0, 0.1, 0, 0.0702687, 0, 0.0711499, 35.5903, -31.7336, -344.498 )
 
 [node name="Island5" parent="Props/Island2" instance=ExtResource( 26 )]
-transform = Transform( -0.366467, 0, -0.160319, 0, 0.4, 0, 0.160319, 0, -0.366467, -83.7084, -30.9304, -325.072 )
+transform = Transform( -0.228039, 0, -0.328631, 0, 0.4, 0, 0.328631, 0, -0.228039, -49.3617, -30.9304, -230.801 )
 
 [node name="TempleRuins" parent="Props/Island2" instance=ExtResource( 27 )]
-transform = Transform( 0.76703, 0, 1.28906, 0, 1.5, 0, -1.28906, 0, 0.76703, -42.9161, -30.9, -352.966 )
+transform = Transform( -0.0225418, 0, 1.49983, 0, 1.5, 0, -1.49983, 0, -0.0225418, -29.2457, -30.9, -275.939 )
 
 [node name="boat_lowpoly" parent="Props/Island2" instance=ExtResource( 29 )]
-transform = Transform( -0.00826622, 0, -0.0182118, 0, 0.02, 0, 0.0182118, 0, -0.00826622, -5.23515, -31.2741, -353.115 )
+transform = Transform( 0.00250736, 0, -0.0198422, 0, 0.02, 0, 0.0198422, 0, 0.00250736, 2.76495, -31.2741, -295.818 )
 
 [node name="PirateShip" parent="Props/Island2" instance=ExtResource( 28 )]
-transform = Transform( -0.259712, 0, -0.965686, 0, 1, 0, 0.965686, 0, -0.259712, 113.232, -33.4669, -378.75 )
+transform = Transform( 0.285053, 0, -0.958512, 0, 1, 0, 0.958512, 0, 0.285053, 90.2123, -33.4669, -379.75 )
 
 [node name="Island3" type="Spatial" parent="Props"]
 
@@ -567,3 +698,6 @@ transform = Transform( 0.232069, 0, 0.190116, 0, 1, 0, -0.190116, 0, 0.232069, 4
 
 [node name="pier_de_madeira_low_poly2" parent="Props/Island3" instance=ExtResource( 30 )]
 transform = Transform( -0.190116, 0, 0.232069, 0, 1, 0, -0.232069, 0, -0.190116, 445.398, -27.5096, -366.118 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
