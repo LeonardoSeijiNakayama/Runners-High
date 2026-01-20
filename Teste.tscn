@@ -625,6 +625,9 @@ transform = Transform( 0.914805, 0, 0.403897, 0, 1, 0, -0.403897, 0, 0.914805, -
 [node name="Pillar3" parent="Ramp" instance=ExtResource( 23 )]
 transform = Transform( 0.914805, 0, 0.403897, 0, 1, 0, -0.403897, 0, 0.914805, 13.0315, -34.8972, 15.6361 )
 
+[node name="Pillar" parent="Ramp" instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7863, -43.6333, 35.539 )
+
 [node name="Props" type="Spatial" parent="."]
 
 [node name="Island1" type="Spatial" parent="Props"]

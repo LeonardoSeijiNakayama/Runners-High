@@ -39,7 +39,7 @@ func _toggle_pause(event):
 func _process(_delta):
 	if not audio.playing:
 		audio.play()
-	if p1.currentLap == 3:
+	if p1.currentLap == 1:
 		Global.winner = 1
 		get_tree().change_scene("res://VictoryScreen.tscn")
 	elif p2.currentLap == 3:

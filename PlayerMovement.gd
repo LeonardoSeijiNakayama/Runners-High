@@ -116,6 +116,7 @@ func slip():
 		abilities.shield.queue_free()
 
 
+var wall_normal
 
 func wall_run(prefix:String)->void:
 	if (wr_cooldown < 1.0):
@@ -132,16 +133,26 @@ func wall_run(prefix:String)->void:
 	and _is_wall_runnable() \
 	and wr_cooldown >= 1.0 \
 	and not Player.slipped \
-	and (Input.get_action_strength(prefix+"left") > 0.0 or Input.get_action_strength(prefix+"right") > 0.0):
+	and (Input.is_action_pressed(prefix+"up")):
 		
 		
 		
 		Player.speed = Player.WR_SPEED
+		wall_normal = Player.get_slide_collision(0)
+		Player.velocity = -wall_normal.normal * Player.speed
 		
-		if Input.get_action_strength(prefix+"left") > 0.0:
-			Player.state = Player.WALLRUNNING_LEFT
-		if Input.get_action_strength(prefix+"right") > 0.0:
+		var n = wall_normal.normal.normalized()
+		
+		# direita do player (ajuste se seu modelo usa outra base)
+		var right: Vector3 = Player.global_transform.basis.x.normalized()
+
+		# parede do lado direito/esquerdo do player
+		var side = n.dot(right)
+
+		if side > 0.0:
 			Player.state = Player.WALLRUNNING_RIGHT
+		else:
+			Player.state = Player.WALLRUNNING_LEFT
 	
 		wr_flag = true
 		if (wr_slip_timer < 1):

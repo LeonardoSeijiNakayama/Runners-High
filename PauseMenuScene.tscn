@@ -41,100 +41,93 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 93.0
-margin_top = 33.0
-margin_right = 866.0
-margin_bottom = 507.0
+margin_left = 149.0
+margin_top = 51.0
+margin_right = 811.0
+margin_bottom = 489.0
 custom_constants/separation = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 773.0
+margin_right = 662.0
 margin_bottom = 68.0
 alignment = 1
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 159.0
-margin_right = 614.0
+margin_left = 103.0
+margin_right = 558.0
 margin_bottom = 68.0
 custom_fonts/font = SubResource( 1 )
 text = "Game Paused"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 100.0
-margin_right = 773.0
-margin_bottom = 378.0
+margin_right = 662.0
+margin_bottom = 342.0
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 773.0
-margin_bottom = 278.0
+margin_right = 662.0
+margin_bottom = 242.0
 custom_constants/separation = 10
 
 [node name="MovementLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
-margin_right = 773.0
+margin_right = 662.0
 margin_bottom = 26.0
 custom_fonts/font = SubResource( 4 )
 text = "Movement: Left Stick/D-Pads"
 
 [node name="JumpLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 36.0
-margin_right = 773.0
+margin_right = 662.0
 margin_bottom = 62.0
 custom_fonts/font = SubResource( 4 )
 text = "Jump: A / X"
 
 [node name="RunLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 72.0
-margin_right = 773.0
+margin_right = 662.0
 margin_bottom = 98.0
 custom_fonts/font = SubResource( 4 )
 text = "Run: RB / R1"
 
 [node name="AbilityLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 108.0
-margin_right = 773.0
+margin_right = 662.0
 margin_bottom = 134.0
 custom_fonts/font = SubResource( 4 )
 text = "Use Ability: B / O"
 
 [node name="GPLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 144.0
-margin_right = 773.0
+margin_right = 662.0
 margin_bottom = 170.0
 custom_fonts/font = SubResource( 4 )
 text = "Use Grappling Hook: LB / L1"
 
-[node name="LWallRunLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+[node name="WallRunLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 180.0
-margin_right = 773.0
+margin_right = 662.0
 margin_bottom = 206.0
 custom_fonts/font = SubResource( 4 )
-text = "Wall Run to Left: Hold Move Left + Hold Jump "
-
-[node name="RWallRunLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
-margin_top = 216.0
-margin_right = 773.0
-margin_bottom = 242.0
-custom_fonts/font = SubResource( 4 )
-text = "Wall Run to Right: Hold Move Right + Hold Jump"
+text = "Wall Run: Hold Move Forward + Hold Jump "
 
 [node name="WallRunJumpLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
-margin_top = 252.0
-margin_right = 773.0
-margin_bottom = 278.0
+margin_top = 216.0
+margin_right = 662.0
+margin_bottom = 242.0
 custom_fonts/font = SubResource( 5 )
-text = "Wall Run Jump: Hold Move Right / Move Left + Release Jump"
+text = "Wall Run Jump: Hold move forward + Release Jump"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 410.0
-margin_right = 773.0
-margin_bottom = 474.0
+margin_top = 374.0
+margin_right = 662.0
+margin_bottom = 438.0
 custom_constants/separation = 128
 alignment = 1
 
 [node name="ResumeBtn" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 66.0
-margin_right = 322.0
+margin_left = 11.0
+margin_right = 267.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 256, 64 )
 custom_fonts/font = SubResource( 2 )
@@ -145,8 +138,8 @@ custom_styles/normal = ExtResource( 3 )
 text = "Resume"
 
 [node name="MenuBtn" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 450.0
-margin_right = 706.0
+margin_left = 395.0
+margin_right = 651.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 256, 64 )
 custom_fonts/font = SubResource( 3 )

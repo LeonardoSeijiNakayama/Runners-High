@@ -1,7 +1,7 @@
 extends KinematicBody
 
 var velocity = Vector3.ZERO
-var speed = 17
+var speed = 20
 var ascending_speed = 8
 var target_group
 var ascending = true
