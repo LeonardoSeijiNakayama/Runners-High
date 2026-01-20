@@ -55,12 +55,13 @@ func physics_update(delta:float, input_dir:Vector3, prefix:String, slipped:bool)
 	else:
 		abilities.release_gp()
 	
-	# lógica do wallrun
 	wall_run(prefix)
 	# Movimento no referencial da camera
 	movement(input_dir, prefix)
 	# lógica de pulo/estado no ar
 	jump(input_dir, prefix, slipped)
+	# lógica do wallrun
+	
 	
 	Player.velocity = Player.move_and_slide_with_snap(Player.velocity, Player._snap_vector, Vector3.UP, true)
 	
@@ -133,34 +134,31 @@ func wall_run(prefix:String)->void:
 	and _is_wall_runnable() \
 	and wr_cooldown >= 1.0 \
 	and not Player.slipped \
-	and (Input.is_action_pressed(prefix+"up")):
-		
-		
-		
-		Player.speed = Player.WR_SPEED
-		wall_normal = Player.get_slide_collision(0)
-		Player.velocity = -wall_normal.normal * Player.speed
-		
-		var n = wall_normal.normal.normalized()
-		
-		# direita do player (ajuste se seu modelo usa outra base)
-		var right: Vector3 = Player.global_transform.basis.x.normalized()
-
-		# parede do lado direito/esquerdo do player
-		var side = n.dot(right)
-
-		if side > 0.0:
-			Player.state = Player.WALLRUNNING_RIGHT
-		else:
-			Player.state = Player.WALLRUNNING_LEFT
+	and Input.is_action_pressed(prefix+"up"):
 	
-		wr_flag = true
-		if (wr_slip_timer < 1):
-			wr_slip_timer += global_delta
-			Player.velocity.y = 0.0
-		else:
-			Player.gravity = Player.WR_GRAVITY
-
+		Player.speed = Player.WR_SPEED
+	
+		var col = Player.get_slide_collision(0)
+		if col:
+			var n: Vector3 = col.normal.normalized()
+			
+			Player.velocity = -n * Player.speed
+			
+			var right: Vector3 = Player.global_transform.basis.x.normalized()
+			var side := n.dot(right)
+			
+			if side > 0.0:
+				Player.state = Player.WALLRUNNING_RIGHT
+			else:
+				Player.state = Player.WALLRUNNING_LEFT
+			
+			wr_flag = true
+			if (wr_slip_timer < 1):
+				wr_slip_timer += global_delta
+				Player.velocity.y = 0.0
+			else:
+				Player.velocity.y = -Player.WR_GRAVITY
+				
 	elif Input.is_action_just_released(prefix+"jump") and wr_flag and Player.is_on_wall():
 		Player.velocity.y = Player.jump_force
 		Player.gravity = Player.NORMAL_GRAVITY
@@ -240,8 +238,8 @@ func movement(input_dir:Vector3, prefix:String)->void:
 		return
 	
 	if Player.state == Player.WALLRUNNING_LEFT or Player.state == Player.WALLRUNNING_RIGHT:
-		Player.velocity.x = input_dir.x * Player.WR_SPEED
-		Player.velocity.z = input_dir.z * Player.WR_SPEED
+		Player.velocity.x += input_dir.x * Player.WR_SPEED
+		Player.velocity.z += input_dir.z * Player.WR_SPEED
 		return
 	
 	var dir := input_dir
