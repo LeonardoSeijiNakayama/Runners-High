@@ -8,7 +8,7 @@ var ascending = true
 var ascending_timer = 0
 var global_delta
 var rotation_speed = 1.0
-const ASCENDING_TIME = 3
+const ASCENDING_TIME = 0.0
 var degree = 0.0
 export (int, 1, 2) var target := 1
 onready var collision = $CollisionShape
@@ -59,11 +59,12 @@ func follow_target() -> void:
 	var dir = (player.global_transform.origin - global_transform.origin).normalized()
 	
 	if ascending:
-		if ascending_timer >= 4.0:
+		if ascending_timer >= 2.0:
 			ascending = false
-			ascending_timer = 3.0
+			ascending_timer = ASCENDING_TIME
 		ascending_timer += global_delta * 1.5
-		velocity.y = (log(ascending_timer)/log(2))*3
+		#velocity.y = (log(ascending_timer)/log(2))*3
+		velocity.y = -1*pow((ascending_timer-0.5), 2)+3
 		velocity.x = ascending_speed * dir.x
 		velocity.z = ascending_speed * dir.z
 	else:
