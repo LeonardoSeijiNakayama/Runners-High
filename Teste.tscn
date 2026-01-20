@@ -704,18 +704,3 @@ transform = Transform( -0.190116, 0, 0.232069, 0, 1, 0, -0.232069, 0, -0.190116,
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = "SFX"
-
-[node name="BigWall" parent="." instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.4081, 0, 0 )
-
-[node name="BigWall2" parent="." instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.2829, 0, 0 )
-
-[node name="BigWall3" parent="." instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 69.7538, 0, 0 )
-
-[node name="BigWall4" parent="." instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 96.5507, 0, 0 )
-
-[node name="BigWall5" parent="." instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 129.405, 0, 0 )
