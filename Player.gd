@@ -21,7 +21,7 @@ const NORMAL_SPEED = 7.5
 const WR_SPEED = 17.0
 const RUNNING_SPEED = 15
 const NORMAL_GRAVITY = 12
-const WR_GRAVITY := 2
+const WR_GRAVITY := 4
 
 export var speed := NORMAL_SPEED
 export var gravity := NORMAL_GRAVITY

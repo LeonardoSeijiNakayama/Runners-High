@@ -59,11 +59,10 @@ func follow_target() -> void:
 	var dir = (player.global_transform.origin - global_transform.origin).normalized()
 	
 	if ascending:
-		if ascending_timer >= 2.0:
+		if ascending_timer >= 2.3:
 			ascending = false
 			ascending_timer = ASCENDING_TIME
 		ascending_timer += global_delta * 1.5
-		#velocity.y = (log(ascending_timer)/log(2))*3
 		velocity.y = -1*pow((ascending_timer-0.5), 2)+3
 		velocity.x = ascending_speed * dir.x
 		velocity.z = ascending_speed * dir.z

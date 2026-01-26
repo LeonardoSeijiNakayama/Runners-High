@@ -3,9 +3,15 @@ extends Control
 export(String, "p1_","p2_") var player_group := "p1_"
 
 onready var bar := $Stamina/StaminaBar
-onready var abilityIcon := $Ability/AbilityIcon
+onready var abilityIcon := $Ability/AbilityTexture
 onready var abilityLabel := $Ability/AbilityLabel
 onready var lapsLabel := $LapsLabel
+
+onready var missileTexture = load("res://images/icon foguete sujo.png")
+onready var bananaTexture = load("res://images/icon banana sujo.png")
+onready var runnersHighTexture = load("res://images/icon corrida sujo.png")
+onready var frameTexture = load("res://images/icon moldura sujo.png")
+onready var shieldTexture = load("res://images/icon escudo sujo.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +24,18 @@ func _on_stamina_changed(current: float, maxv: float) -> void:
 
 func _on_ability_changed(name: String)->void:
 	abilityLabel.text = "Ability: " + name
+	print(name)
+	match name:
+		"Missile":
+			abilityIcon.texture = missileTexture
+		"Banana Peel":
+			abilityIcon.texture = bananaTexture
+		"Runners High":
+			abilityIcon.texture = runnersHighTexture
+		"Shield":
+			abilityIcon.texture = shieldTexture
+		"-":
+			abilityIcon.texture = frameTexture
 
 func _on_lap_changed(current:int)->void:
 	lapsLabel.text = "Lap: " + String(current) + "/3"

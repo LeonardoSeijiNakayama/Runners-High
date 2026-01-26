@@ -124,7 +124,7 @@ func shoot_gp()->void:
 
 
 func get_new_ability() -> void:
-	current_ability = rng.randi_range(1, 1)
+	current_ability = rng.randi_range(1, 4)
 	var name = ""
 	match current_ability:
 			MISSILE:

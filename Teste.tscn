@@ -30,8 +30,8 @@
 [ext_resource path="res://PirateShip.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Boat.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Pier.tscn" type="PackedScene" id=30]
-[ext_resource path="res://icon.png" type="Texture" id=31]
 [ext_resource path="res://fonts/Route 26.otf" type="DynamicFontData" id=32]
+[ext_resource path="res://images/icon moldura sujo.png" type="Texture" id=33]
 
 [sub_resource type="DynamicFont" id=14]
 font_data = ExtResource( 32 )
@@ -134,22 +134,22 @@ text = "Laps: 0/3"
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="AbilityIcon" type="TextureRect" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD/Ability"]
+[node name="AbilityTexture" type="TextureRect" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD/Ability"]
+anchor_left = -0.65
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 6.6
-margin_top = 40.0
-margin_right = 46.6
-margin_bottom = 80.0
-texture = ExtResource( 31 )
+margin_right = 2155.0
+margin_bottom = 1688.0
+rect_scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 33 )
 
 [node name="AbilityLabel" type="Label" parent="HBoxContainer/ViewportContainer2/Viewport/CanvasLayer/HUD/Ability"]
-anchor_left = 0.05
-anchor_top = 0.03
+anchor_top = 0.064
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.6
-margin_top = 105.0
+margin_top = 150.0
 margin_right = 46.6
 margin_bottom = 119.0
 custom_fonts/font = SubResource( 15 )
@@ -214,14 +214,15 @@ text = "Laps: 0/3"
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="AbilityIcon" type="TextureRect" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD/Ability"]
+[node name="AbilityTexture" type="TextureRect" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD/Ability"]
+anchor_left = -0.65
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 6.6
-margin_top = 40.0
-margin_right = 46.6
-margin_bottom = 80.0
-texture = ExtResource( 31 )
+margin_right = 2184.0
+margin_bottom = 1688.0
+rect_scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 33 )
 
 [node name="AbilityLabel" type="Label" parent="HBoxContainer/ViewportContainer/Viewport/CanvasLayer/HUD/Ability"]
 anchor_left = 0.05
@@ -229,7 +230,7 @@ anchor_top = 0.03
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.6
-margin_top = 105.0
+margin_top = 150.0
 margin_right = 46.5996
 margin_bottom = 119.0
 custom_fonts/font = SubResource( 19 )
