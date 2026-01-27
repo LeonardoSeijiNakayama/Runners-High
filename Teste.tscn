@@ -34,24 +34,36 @@
 [ext_resource path="res://images/icon moldura sujo.png" type="Texture" id=33]
 
 [sub_resource type="DynamicFont" id=14]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 32 )
 
 [sub_resource type="DynamicFont" id=15]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 32 )
 
 [sub_resource type="DynamicFont" id=16]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 32 )
 
 [sub_resource type="DynamicFont" id=17]
 font_data = ExtResource( 32 )
 
 [sub_resource type="DynamicFont" id=18]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 32 )
 
 [sub_resource type="DynamicFont" id=19]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 32 )
 
 [sub_resource type="DynamicFont" id=20]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 32 )
 
 [sub_resource type="DynamicFont" id=21]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://btn_pressed.tres" type="StyleBox" id=1]
 [ext_resource path="res://btn_normal.tres" type="StyleBox" id=2]
@@ -16,14 +16,50 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 26
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 26
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 26
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.698039, 0.972549, 1, 0.627451 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.0117647, 0.176471, 0.180392, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=7]
+size = 26
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 26
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 26
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="Environment" id=4]
@@ -96,6 +132,99 @@ custom_styles/pressed = ExtResource( 1 )
 custom_styles/focus = ExtResource( 3 )
 custom_styles/normal = ExtResource( 2 )
 text = "Exit"
+
+[node name="Settings" type="Control" parent="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="Control/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -434.0
+margin_top = -241.0
+margin_right = 434.0
+margin_bottom = 241.0
+custom_styles/panel = SubResource( 10 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -406.5
+margin_top = -148.0
+margin_right = 406.5
+margin_bottom = 148.0
+custom_constants/separation = 64
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Settings/VBoxContainer"]
+margin_top = 32.0
+margin_right = 813.0
+margin_bottom = 120.0
+custom_constants/separation = 64
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Settings/VBoxContainer/HBoxContainer"]
+margin_right = 209.0
+margin_bottom = 88.0
+custom_constants/separation = 32
+alignment = 1
+
+[node name="LabelGVolume" type="Label" parent="Control/Settings/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 209.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 90, 0 )
+custom_fonts/font = SubResource( 7 )
+text = "Sound  volume"
+
+[node name="LabelMVolume" type="Label" parent="Control/Settings/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 60.0
+margin_right = 209.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 90, 0 )
+custom_fonts/font = SubResource( 8 )
+text = "Music volume"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Settings/VBoxContainer/HBoxContainer"]
+margin_left = 273.0
+margin_right = 813.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 540, 16 )
+custom_constants/separation = 42
+alignment = 1
+
+[node name="SliderGVolume" type="HSlider" parent="Control/Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 7.0
+margin_right = 540.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 400, 10 )
+
+[node name="SliderMVolume" type="HSlider" parent="Control/Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 65.0
+margin_right = 540.0
+margin_bottom = 81.0
+rect_min_size = Vector2( 400, 10 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/Settings/VBoxContainer"]
+margin_top = 184.0
+margin_right = 813.0
+margin_bottom = 264.0
+
+[node name="btnBack" type="Button" parent="Control/Settings/VBoxContainer/CenterContainer"]
+margin_left = 278.0
+margin_right = 534.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 256, 80 )
+custom_fonts/font = SubResource( 9 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/normal = ExtResource( 2 )
+text = "Back"
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -0.82998, -0.0356124, -0.556654, -0.250679, 0.915316, 0.315208, 0.49829, 0.401158, -0.768622, -17.7846, -13.948, -99.2208 )
@@ -194,3 +323,6 @@ transform = Transform( 0.992707, -0.120553, 0, 0.115748, 0.95314, -0.279511, 0.0
 [connection signal="pressed" from="Control/VBoxContainer/btnPlay" to="." method="_on_btnPlay_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/btnSettings" to="." method="_on_btnSettings_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/btnExit" to="." method="_on_btnExit_pressed"]
+[connection signal="value_changed" from="Control/Settings/VBoxContainer/HBoxContainer/VBoxContainer/SliderGVolume" to="." method="_on_SliderGVolume_value_changed"]
+[connection signal="value_changed" from="Control/Settings/VBoxContainer/HBoxContainer/VBoxContainer/SliderMVolume" to="." method="_on_SliderMVolume_value_changed"]
+[connection signal="pressed" from="Control/Settings/VBoxContainer/CenterContainer/btnBack" to="." method="_on_btnBack_pressed"]
