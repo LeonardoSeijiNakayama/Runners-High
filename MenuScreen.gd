@@ -141,7 +141,7 @@ func _apply_percent_to_bus(bus_idx: int, percent: float) -> void:
 	# Mute se estiver no zero
 	if linear <= 0.001:
 		AudioServer.set_bus_mute(bus_idx, true)
-		AudioServer.set_bus_volume_db(bus_idx, -80) # praticamente silêncio
+		AudioServer.set_bus_volume_db(bus_idx, -80) 
 		return
 	
 	AudioServer.set_bus_mute(bus_idx, false)
@@ -156,7 +156,7 @@ func _apply_percent_to_bus(bus_idx: int, percent: float) -> void:
 
 func _save_value(key: String, value: float) -> void:
 	var cfg = ConfigFile.new()
-	cfg.load(SAVE_PATH) # se não existir, OK
+	cfg.load(SAVE_PATH) 
 	cfg.set_value("audio", key, value)
 	cfg.save(SAVE_PATH)
 

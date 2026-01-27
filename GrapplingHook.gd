@@ -14,7 +14,8 @@ var run_distance = null
 var velocity = Vector3.ZERO
 var player
 var anchor_pos = Vector3() 
-var spawn_offset_up := Vector3.UP * 1.2 
+var spawn_offset_up := Vector3.UP * 1.17
+var spawn_offset_forward := 0.2
 
 
 
@@ -46,7 +47,10 @@ func _physics_process(_delta):
 
 
 func _update_rope() -> void:
-	var p0 = player.global_transform.origin + spawn_offset_up
+	var player_fwd = player.global_transform.basis.z.normalized()
+	var p0 = player.global_transform.origin \
+	+ player_fwd * spawn_offset_forward \
+	+ spawn_offset_up
 
 	var p1
 	if hooked:

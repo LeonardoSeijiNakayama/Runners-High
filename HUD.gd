@@ -38,7 +38,7 @@ func _on_ability_changed(name: String)->void:
 			abilityIcon.texture = frameTexture
 
 func _on_lap_changed(current:int)->void:
-	lapsLabel.text = "Lap: " + String(current) + "/3"
+	lapsLabel.text = "Laps: " + String(current) + "/3"
 
 func _connect_to_player():
 	var list := get_tree().get_nodes_in_group(player_group)
